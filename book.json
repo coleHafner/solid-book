@@ -1,0 +1,10 @@
+{
+    "plugins": [ "jsfiddle", "exercises"],
+    "pluginsConfig": {
+          "jsfiddle":{
+            "tabs":["result","js","css", "html"],
+            "height":500,
+            "widht":500
+          }
+    }
+}

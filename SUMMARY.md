@@ -2,6 +2,8 @@
 
 * General
   * [Version Control](/general/version-control/README.md)
+  * [Code Quality]()
+  * [Issue tracking]()
 
 * Detail
   * Git

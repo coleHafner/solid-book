@@ -1,3 +1,4 @@
+
 # Version Control
 
 While there are multiple options for version control, no matter your choice, there
@@ -20,4 +21,20 @@ chunks. This makes it easier to debug and isolate later.
 
 For example if you have a large commit of 30 files that breaks something.
 
-[shell](/detail/shell/README.md)
+[source code](http://jsfiddle.net/pajtai/7fc60o8c/)
+
+{% exercise %}
+Define a variable `x` equal to 10.
+{% initial %}
+var x =
+{% solution %}
+var x = 10;
+{% validation %}
+assert(x == 10);
+{% context %}
+// This is context code available everywhere
+// The user will be able to call magicFunc in his code
+function magicFunc() {
+    return 3;
+}
+{% endexercise %}
