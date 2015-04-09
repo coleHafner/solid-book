@@ -1,6 +1,25 @@
 # Common Shell Commands
 
 
+# Copy
+
+```
+# copying directories
+cp -R from to
+```
+
+## Move / rename
+
+```
+mv from to
+```
+
+## Links
+
+```
+ln -s from to
+```
+
 ## Open
 
 * Open a url with the default browser:
