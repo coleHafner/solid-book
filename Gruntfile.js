@@ -9,6 +9,15 @@ module.exports = function(grunt) {
                 dist : '_book'
               }
             }
+        },
+        shell : {
+          options : {
+            stdout : true,
+            stderr : true
+          },
+          build : {
+            command : 'gitbook build'
+          }
         }
     });
 }
