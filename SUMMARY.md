@@ -12,6 +12,7 @@
   * [FastCgi](/detail/fastcgi/README.md)
   * Git
     * [Gitflow](/detail/git/gitflow/README.md)
+    * [Hooks](/detail/git/hooks/README.md)
   * Nginx
     * [Config](/detail/nginx/config/README.md)
     * [Fastcgi cache](/detail/nginx/fastcgi-cache/README.md)
