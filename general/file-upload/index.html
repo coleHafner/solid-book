@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Architecture | The Big Incomplete Book of Dev</title>
+        <title>File Upload | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../general/file-upload/index.html" />
+    <link rel="next" href="../../general/version-control/index.html" />
     
     
-    <link rel="prev" href="../../index.html" />
+    <link rel="prev" href="../../general/architecture/index.html" />
     
 
         
@@ -40,7 +40,7 @@
     
 
         
-    <div class="book" data-level="1.1.1" data-basepath="../.." data-revision="Fri Apr 10 2015 12:51:02 GMT-0700 (PDT)">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Fri Apr 10 2015 12:51:02 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -86,7 +86,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1.1" data-path="general/architecture/index.html">
+        <li class="chapter " data-level="1.1.1" data-path="general/architecture/index.html">
             
                 
                     <a href="../../general/architecture/index.html">
@@ -106,7 +106,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="general/file-upload/index.html">
+        <li class="chapter active" data-level="1.2" data-path="general/file-upload/index.html">
             
                 
                     <a href="../../general/file-upload/index.html">
@@ -425,46 +425,110 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="application-architecture">Application Architecture</h1>
-<h2 id="directory-structure">Directory structure</h2>
-<p>The directory structure of an application has a surprisingly large effect on the
-maintainability and debugability of a project. Being able to quickly find the
-file you&apos;re looking for when onboarding to a new project increase efficiency.</p>
-<p>For large JavaScript projects, there are two main ways to organize your files. One
-is to separate files by functionality, and the other is two group functional units.</p>
-<p>For example if you are making a Backbone app with models, views, and templates:</p>
-<h3 id="functional-group-organization">Functional group organization</h3>
-<pre><code class="lang-undefined">model
-  calendar
-  breadCrumb
-  footer
-view
-  calendar
-  breadCrumb
-  footer
-template
-  calendar
-  breadCrumb
-  footer
+                        <h1 id="file-upload">File Upload</h1>
+<h2 id="files-api">Files api</h2>
+<p>Sending files via html/js can be done using the file api.</p>
+<h3 id="javascript-example">JavaScript example</h3>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;file&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;it&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;files&quot;</span> <span class="hljs-attribute">multiple</span>=<span class="hljs-value">&quot;multiple&quot;</span> <span class="hljs-attribute">accept</span>=<span class="hljs-value">&quot;image/*&quot;</span> /&gt;</span>
 </code></pre>
-<h3 id="pod-organization">Pod organization</h3>
-<pre><code class="lang-undefined">calendar
-  model
-  view
-  template
-breadCrumb
-  model
-  view
-  template
-footer
-  model
-  view
-  template
+<pre><code class="lang-javascript">$.each($(<span class="hljs-string">&apos;input#it&apos;</span>).files, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(file)</span> </span>{
+    postNewAsset(file)
+        .progress(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(progress)</span> </span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Progress &apos;</span> + progress);
+        })
+        .then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            alert(<span class="hljs-string">&apos;File uploaded!!!!&apos;</span>);
+        });
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postNewAsset</span> <span class="hljs-params">(file)</span> </span>{
+    <span class="hljs-keyword">var</span> form_data = <span class="hljs-keyword">new</span> FormData(),
+        $deferred = <span class="hljs-keyword">new</span> $.Deferred(),
+        request;
+
+    form_data.append(<span class="hljs-string">&apos;file&apos;</span>, file);
+
+    request = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+    request.upload.addEventListener(<span class="hljs-string">&apos;progress&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+        $deferred.notify((e.loaded / e.total) * <span class="hljs-number">100</span> + <span class="hljs-string">&apos;%&apos;</span>);
+    }, <span class="hljs-literal">false</span>);
+
+    request.open(<span class="hljs-string">&apos;POST&apos;</span>, <span class="hljs-string">&apos;http://example.com/upload&apos;</span>);
+
+    request.setRequestHeader(<span class="hljs-string">&apos;Accept&apos;</span>, <span class="hljs-string">&apos;*/*&apos;</span>);
+
+    request.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (request.readyState !== <span class="hljs-number">4</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">if</span> ([<span class="hljs-number">200</span>, <span class="hljs-number">304</span>].indexOf(request.status) === -<span class="hljs-number">1</span>) {
+            $deferred.reject(request.status);
+        } <span class="hljs-keyword">else</span> {
+            $deferred.resolve(<span class="hljs-built_in">JSON</span>.parse(request.response).message);
+        }
+    };
+
+    request.send(form_data);
+
+    <span class="hljs-keyword">return</span> $deferred.promise();
+}
 </code></pre>
-<p>We have tried both of these methods, and in general it appears to be easier to
-find files in a pod organization. This is especially true when the project starts
-getting bigger, and there are 30+ views. Additionally a pod architecture makes it
-very fast to copy paste a pod and with a few minor changes get a working view.</p>
+<h2 id="multipart">Multipart</h2>
+<p>Multipart form data is used to send form data. It can be used to send files.</p>
+<h3 id="sending-multipart-data-to-the-server">Sending multipart data to the server</h3>
+<ul>
+<li>Data must be sent with a <code>Content-Type: multipart/form-data, boundary=--MY_UNIQUE_BOUNDARY--</code> header</li>
+<li>The boundary is used to separate fields in the form. Example:</li>
+</ul>
+<pre><code class="lang-text">----MY_UNIQUE_BOUNDARY--
+Content-Disposition: form-data; name=&quot;field1&quot;
+
+field value here
+----MY_UNIQUE_BOUNDARY--
+Content-Disposition: attachment; name=&quot;file1&quot;; filename=&quot;my_file.jpg&quot;
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+
+874fbiu45fguh4uyb45b8uyb45uyb43fyutgrvub4yutgvbybrvuyuyfbuierhg4eiguqiubiuw4bgiu4b8b45g4g...
+----MY_UNIQUE_BOUNDARY----
+</code></pre>
+<ul>
+<li>Notes<ul>
+<li>boundaries in the post body must be prefixed with two hyphens (<code>--</code>)</li>
+<li>the final boundary must have another two hyphens appended to it</li>
+<li>lines must be terminated with a carriage-return followed by a line-break (<code>\r\n</code>)</li>
+<li>Content-Encoding may be <code>base64</code> or <code>binary</code> (other encodings might be allowed as well)</li>
+</ul>
+</li>
+</ul>
+<h4 id="c-example">C# example</h4>
+<pre><code class="lang-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;CurrentUser&gt; <span class="hljs-title">SetAvatar</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] imageBytes)</span>
+</span>{
+    <span class="hljs-keyword">var</span> headerBoundary = <span class="hljs-string">&quot;--&quot;</span> + Guid.NewGuid().ToString();
+    <span class="hljs-keyword">var</span> boundary = <span class="hljs-string">&quot;--&quot;</span> + headerBoundary;
+    <span class="hljs-keyword">var</span> sb = <span class="hljs-keyword">new</span> StringBuilder ();
+
+    sb.Append(boundary + <span class="hljs-string">&quot;\r\n&quot;</span>);
+    sb.AppendFormat (<span class="hljs-string">&quot;Content-Disposition: attachment; name=\&quot;{0}\&quot;; filename=\&quot;{1}\&quot;\r\n&quot;</span>, <span class="hljs-string">&quot;file&quot;</span>, <span class="hljs-string">&quot;avatar.jpg&quot;</span>);
+    sb.Append (<span class="hljs-string">&quot;Content-Type: image/jpeg\r\n&quot;</span>);
+    sb.Append (<span class="hljs-string">&quot;Content-Transfer-Encoding: base64\r\n\r\n&quot;</span>);
+    sb.Append (Convert.ToBase64String (imageBytes, <span class="hljs-number">0</span>, imageBytes.Length) + <span class="hljs-string">&quot;\r\n&quot;</span>);
+    sb.AppendLine (boundary + <span class="hljs-string">&quot;--\r\n&quot;</span>);
+
+    <span class="hljs-keyword">var</span> postBody = <span class="hljs-keyword">new</span> StringContent (sb.ToString());
+    postBody.Headers.Remove (<span class="hljs-string">&quot;Content-Type&quot;</span>);
+    postBody.Headers.TryAddWithoutValidation (<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;multipart/form-data; boundary=&quot;</span> + headerBoundary);
+
+    UpdateFromUser(<span class="hljs-keyword">await</span> Request.GetInstance ().Post&lt;User, StringContent&gt; (<span class="hljs-string">&quot;/user/avatar&quot;</span>, postBody));
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>Note the double quotes for the name and filename values. If you are receiving the data with the multiparty npm, then
+currently this is needed. This will probably get fixed with <a href="https://github.com/andrewrk/node-multiparty/issues/101" target="_blank">issue 101</a>.</p>
+<pre><code class="lang-undefined">name=\&quot;{0}\&quot;;
+</code></pre>
 
                     
                     </section>
@@ -475,10 +539,10 @@ very fast to copy paste a pod and with a few minor changes get a working view.</
         </div>
 
         
-        <a href="../../index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
+        <a href="../../general/architecture/index.html" class="navigation navigation-prev " aria-label="Previous page: Architecture"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../general/file-upload/index.html" class="navigation navigation-next " aria-label="Next page: File Upload"><i class="fa fa-angle-right"></i></a>
+        <a href="../../general/version-control/index.html" class="navigation navigation-next " aria-label="Next page: Version Control"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
