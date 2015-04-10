@@ -5,9 +5,25 @@ module.exports = function(grunt) {
     grunt.initConfig({
         buildGhPages : {
             book : {
+              options : {
                 dist : '_book'
+              }
             }
+        },
+        shell : {
+          options : {
+            stdout : true,
+            stderr : true
+          },
+          build : {
+            command : 'gitbook build'
+          }
         }
     });
-}
 
+    grunt.registerTask('deploy', [
+      'shell:build',
+      'buildGhPages:book'
+    ]);
+    
+}
