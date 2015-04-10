@@ -5,9 +5,10 @@ module.exports = function(grunt) {
     grunt.initConfig({
         buildGhPages : {
             book : {
+              options : {
                 dist : '_book'
+              }
             }
         }
     });
 }
-
