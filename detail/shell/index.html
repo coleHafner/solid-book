@@ -38,7 +38,7 @@
     
 
         
-    <div class="book" data-level="2.6" data-basepath="../.." data-revision="Fri Apr 10 2015 22:25:22 GMT-0700 (PDT)">
+    <div class="book" data-level="2.6" data-basepath="../.." data-revision="Fri Apr 10 2015 22:31:10 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -429,6 +429,10 @@
 <pre><code>ln -s from to
 </code></pre><h2 id="means">Means</h2>
 <p>To calculate the mean of a column of numbers in a file:</p>
+<pre><code class="lang-shell">awk &apos;{ total += $1; count++ } END { print total/count }&apos; nocache.log
+</code></pre>
+<p>Awk is a program for dealing with files with columns. <code>$1</code> means the first column.
+The command <code>total += $1; count++</code> runs for each row.</p>
 <h2 id="open">Open</h2>
 <ul>
 <li>Open a url with the default browser:</li>
