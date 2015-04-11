@@ -40,7 +40,7 @@
     
 
         
-    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Fri Apr 10 2015 12:51:02 GMT-0700 (PDT)">
+    <div class="book" data-level="1.5" data-basepath="../.." data-revision="Fri Apr 10 2015 22:25:22 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -437,7 +437,24 @@ running on your server can still access it. You can also get access via SSH
 tunnels or proxies. For example using nginx and htpasswd you can password protect
 something like elasticsearch. Nginx can listen on port 80, and only allow access
 in certain cases by doing a proxy_pass to localhost port 9200.</p>
-
+<h2 id="login">Login</h2>
+<p>SSH login is much more secure - and ends up being easer to manage for users - than
+password login, so it is a good idea to turn off password login and enable ssh
+login.</p>
+<p>SSH login can be enabled and password login disabled in <code>/etc/ssh/ssh_confd</code>:</p>
+<pre><code>PubkeyAuthentication yes
+PasswordAuthentication no
+</code></pre><p>After this is done the sshd service must be restarted for the changes to take effect:</p>
+<pre><code>sudo service ssh restart
+</code></pre><p>Make sure you don&apos;t lock yourself out. It is a good idea to first enable ssh login,
+test it, then disable password login.</p>
+<h2 id="ssh-port">SSH port</h2>
+<p><code>tail -f /var/log/auth.log</code> will often show a lot of attempted logins on port 22
+of people you don&apos;t know. Changing the ssh port to something other than 22 will
+decrease this barage.</p>
+<p>The ssh port can be change in <code>/etc/ssh/sshd_config</code>:</p>
+<pre><code>Port 22
+</code></pre>
                     
                     </section>
                 

@@ -40,7 +40,7 @@
     
 
         
-    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Fri Apr 10 2015 12:51:02 GMT-0700 (PDT)">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Fri Apr 10 2015 22:25:22 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -426,19 +426,19 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="fastcgi">FastCgi</h1>
+<h2 id="environmental-variables">Environmental variables</h2>
+<p>It&apos;s often convenient to define environemental variables as they are passed in.
+The allows per vhost setting for things like php&apos;s <code>$_SERVER[&apos;foo&apos;]</code>.</p>
+<pre><code># not sure if this is quite right
+fastcgi_param foo &quot;bar&quot;
+</code></pre><h2 id="prepend-and-append">Prepend and append</h2>
 <p>You can prepend and postpend files using nginx when passing to fastcgi with
 <code>fastcgi_param</code>. The same value can also be add to <code>php.ini</code>.</p>
-<pre><code class="lang-undefined">fastcgi_param PHP_VALUE &quot;auto_prepend_file=/path/to/xhgui/external/header.php&quot;;
-</code></pre>
+<pre><code>fastcgi_param PHP_VALUE &quot;auto_prepend_file=/path/to/xhgui/external/header.php&quot;;
+</code></pre><p>You can do the same with <code>auto_append_file</code> too.</p>
 <p>The functional difference between the two is that if you use nginx, you can
 easily control which virtual hosts receive the files, while in <code>php.ini</code> all
 vhosts will receive it.</p>
-<p>After making changes to the nginx config files don&apos;t forget to restart:</p>
-<pre><code class="lang-undefined">sudo nginx -s reload
-</code></pre>
-<p>Avoid using <code>sudo service nginx restart</code>, since that will crash the server if
-there are syntax errors in the changes. <code>sudo nginx -s reload</code> will not do a
-restart if it finds errors.</p>
 
                     
                     </section>

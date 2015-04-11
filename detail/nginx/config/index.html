@@ -40,7 +40,7 @@
     
 
         
-    <div class="book" data-level="2.5.1" data-basepath="../../.." data-revision="Fri Apr 10 2015 12:51:02 GMT-0700 (PDT)">
+    <div class="book" data-level="2.5.1" data-basepath="../../.." data-revision="Fri Apr 10 2015 22:25:22 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -427,9 +427,8 @@
                     
                         <h1 id="nginx-configs">Nginx configs</h1>
 <p>After making changes to the nginx config files don&apos;t forget to restart:</p>
-<pre><code class="lang-undefined">sudo nginx -s reload
-</code></pre>
-<p>Avoid using <code>sudo service nginx restart</code>, since that will crash the server if
+<pre><code>sudo nginx -s reload
+</code></pre><p>Avoid using <code>sudo service nginx restart</code>, since that will crash the server if
 there are syntax errors in the changes. <code>sudo nginx -s reload</code> will not do a
 restart if it finds erros.</p>
 

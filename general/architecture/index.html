@@ -40,7 +40,7 @@
     
 
         
-    <div class="book" data-level="1.1.1" data-basepath="../.." data-revision="Fri Apr 10 2015 12:51:02 GMT-0700 (PDT)">
+    <div class="book" data-level="1.1.1" data-basepath="../.." data-revision="Fri Apr 10 2015 22:25:22 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -434,7 +434,7 @@ file you&apos;re looking for when onboarding to a new project increase efficienc
 is to separate files by functionality, and the other is two group functional units.</p>
 <p>For example if you are making a Backbone app with models, views, and templates:</p>
 <h3 id="functional-group-organization">Functional group organization</h3>
-<pre><code class="lang-undefined">model
+<pre><code>model
   calendar
   breadCrumb
   footer
@@ -446,9 +446,8 @@ template
   calendar
   breadCrumb
   footer
-</code></pre>
-<h3 id="pod-organization">Pod organization</h3>
-<pre><code class="lang-undefined">calendar
+</code></pre><h3 id="pod-organization">Pod organization</h3>
+<pre><code>calendar
   model
   view
   template
@@ -460,8 +459,7 @@ footer
   model
   view
   template
-</code></pre>
-<p>We have tried both of these methods, and in general it appears to be easier to
+</code></pre><p>We have tried both of these methods, and in general it appears to be easier to
 find files in a pod organization. This is especially true when the project starts
 getting bigger, and there are 30+ views. Additionally a pod architecture makes it
 very fast to copy paste a pod and with a few minor changes get a working view.</p>
