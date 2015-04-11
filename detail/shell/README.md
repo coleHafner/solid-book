@@ -12,7 +12,12 @@ ln -s from to
 
 To calculate the mean of a column of numbers in a file:
 
+```shell
+awk '{ total += $1; count++ } END { print total/count }' nocache.log
+```
 
+Awk is a program for dealing with files with columns. `$1` means the first column.
+The command `total += $1; count++` runs for each row.
 
 ## Open
 
