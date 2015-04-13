@@ -18,4 +18,6 @@
   * Nginx
     * [Config](/detail/nginx/config/README.md)
     * [Fastcgi cache](/detail/nginx/fastcgi-cache/README.md)
+  * PHP
+    * [Xdebug & Vagrant](/detail/php/xdebug/README.md)
   * [Shell Commands](/detail/shell/README.md)
