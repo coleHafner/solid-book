@@ -56,3 +56,7 @@ fastcgi_read_timeout 1d;
 ```
 
 This is a timeout of one day - hopefully long enoug for your debugging session ;)
+
+## References
+
+http://walkah.net/blog/debugging-php-with-vagrant/
