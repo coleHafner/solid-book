@@ -3,6 +3,8 @@
 * General
   * [Code Quality]()
     * [Architecture](/general/architecture/README.md)
+  * DevOps
+    * [Deployment](/general/devops/deployment/README.md)
   * [File Upload](/general/file-upload/README.md)
   * [Version Control](/general/version-control/README.md)
   * [Issue tracking]()
