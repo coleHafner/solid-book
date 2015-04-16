@@ -30,6 +30,12 @@ Percentage served,Time in ms
 ...
 ```
 
+Of course each format is useful for different things, so don't restrict yourself:
+
+```
+ab -n 1000 -c 10 -e something.csv -g something.tsv http://www.something.com/
+```
+
 Additionally you get a summary of the requests.
 
 ```
