@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Fastcgi cache | The Big Incomplete Book of Dev</title>
+        <title>Users | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../detail/php/xdebug/index.html" />
+    <link rel="next" href="../../../detail/nginx/config/index.html" />
     
     
-    <link rel="prev" href="../../../detail/nginx/config/index.html" />
+    <link rel="prev" href="../../../detail/mysql/profiling/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="2.6.2" data-basepath="../../.." data-revision="Wed Apr 15 2015 23:52:33 GMT-0700 (PDT)">
+    <div class="book" data-level="2.5.2" data-basepath="../../.." data-revision="Wed Apr 15 2015 23:52:33 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -321,7 +321,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5.2" data-path="detail/mysql/users/index.html">
+        <li class="chapter active" data-level="2.5.2" data-path="detail/mysql/users/index.html">
             
                 
                     <a href="../../../detail/mysql/users/index.html">
@@ -364,7 +364,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.6.2" data-path="detail/nginx/fastcgi-cache/index.html">
+        <li class="chapter " data-level="2.6.2" data-path="detail/nginx/fastcgi-cache/index.html">
             
                 
                     <a href="../../../detail/nginx/fastcgi-cache/index.html">
@@ -535,9 +535,21 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="setting-up-fastcgi-cache">Setting up fastcgi cache</h1>
-<p>Digital Ocean blog posts and community tutorial are often a good source of
-server related information.</p>
+                        <h1 id="creating-users">Creating Users</h1>
+<pre><code># show all users
+select User from mysql.user;
+show grants for &apos;root&apos;@&apos;localhost&apos;;
+
+# create user with password and give privileges
+create user &apos;[username]&apos;@&apos;localhost&apos; identified by &apos;[the password]&apos;;
+grant all privileges on [db name].* to `[user name]`@&apos;localhost&apos;;
+flush privileges;
+</code></pre><h2 id="references">References</h2>
+<ul>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/adding-users.html" target="_blank">http://dev.mysql.com/doc/refman/5.1/en/adding-users.html</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql" target="_blank">https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql</a></li>
+<li><a href="http://stackoverflow.com/questions/5016505/mysql-grant-all-privileges-on-database" target="_blank">http://stackoverflow.com/questions/5016505/mysql-grant-all-privileges-on-database</a></li>
+</ul>
 
                     
                     </section>
@@ -548,10 +560,10 @@ server related information.</p>
         </div>
 
         
-        <a href="../../../detail/nginx/config/index.html" class="navigation navigation-prev " aria-label="Previous page: Config"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../detail/mysql/profiling/index.html" class="navigation navigation-prev " aria-label="Previous page: Profiling"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../detail/php/xdebug/index.html" class="navigation navigation-next " aria-label="Next page: Xdebug &amp; Vagrant"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../detail/nginx/config/index.html" class="navigation navigation-next " aria-label="Next page: Config"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
