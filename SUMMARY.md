@@ -34,3 +34,9 @@ To add:
 
 * Updating ubuntu 12 to 14 (php mysql extension)
 * Export and import 1 mysql table
+* usiing hombrew versions:
+
+```
+brew tap homebrew/versions
+brew install mongodb26
+```
