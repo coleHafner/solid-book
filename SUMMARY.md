@@ -26,13 +26,13 @@
     * [Fastcgi cache](/detail/nginx/fastcgi-cache/README.md)
   * PHP
     * [Xdebug & Vagrant](/detail/php/xdebug/README.md)
+    * [Mysql extension](/detail/php/mysql-extension/README.md)
   * [Shell Commands](/detail/shell/README.md)
 
 ---
 
 To add:
 
-* Updating ubuntu 12 to 14 (php mysql extension)
 * Export and import 1 mysql table
 * usiing hombrew versions:
 
