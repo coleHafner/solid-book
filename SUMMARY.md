@@ -5,6 +5,8 @@
     * [Architecture](/general/architecture/README.md)
   * DevOps
     * [Deployment](/general/devops/deployment/README.md)
+  * Error Handling
+    * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)     
   * [File Upload](/general/file-upload/README.md)
   * [Profiling](/general/profiling/README.md)
   * [Version Control](/general/version-control/README.md)
@@ -30,4 +32,3 @@
   * Shell
     * [CLI](/detail/shell/cli/README.md)
     * [Commands](/detail/shell/commands/README.md)
-
