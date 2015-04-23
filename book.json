@@ -1,5 +1,5 @@
 {
-    "plugins": [ "jsfiddle", "exercises"],
+    "plugins": [ "jsfiddle"],
     "pluginsConfig": {
           "jsfiddle":{
             "tabs":["result","js","css", "html"],
