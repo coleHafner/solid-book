@@ -16,7 +16,8 @@ You can prepend and postpend files using nginx when passing to fastcgi with
 `fastcgi_param`. The same value can also be add to `php.ini`.
 
 ```
-fastcgi_param PHP_VALUE "auto_prepend_file=/path/to/xhgui/external/header.php";
+    fastcgi_param PHP_VALUE "auto_prepend_file=/var/www/vhosts/profile/header.php
+auto_append_file=/var/www/vhosts/profile/footer.php";
 ```
 
 You can do the same with `auto_append_file` too.
