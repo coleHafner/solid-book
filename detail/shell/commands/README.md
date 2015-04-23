@@ -53,6 +53,16 @@ To kill them:
 kill $(lsof -t -i:4000)
 ```
 
+## Scp
+
+Scp is for copying content over ssh.
+
+You can use your ssh aliases when defining the to and from locations:
+
+```
+scp -r exampleStaging:/some/directory ~
+```
+
 ## Ssh
 
 Open an SSH tunnel to example.com port 22 and use your local port 27018 to
@@ -63,4 +73,30 @@ Something like this is useful for interacting with a locally bound process (e.g.
 
 ```
 ssh -L27018:localhost:27017 user@example.com -p 22
+```
+
+## Tar
+
+There are two very common combination of flags in conjunction with the `tar` command:
+
+```
+# extract files with verbose output
+tar -xvf some.file.tar.gz
+
+# compress files with verbose output
+tar -zcvf some.file.to.create.tar.gz directory-to-compress
+```
+
+If you want to delete the files as they get compressed, use the `--remove-files` flag.
+This has to be the first flag used, or `tar` will think it's a file.
+
+```
+tar --remove-files a.tar.gz b
+```
+
+The `--remove-files` flag is not supported by the `tar` command that ships with
+Mac, but gnu tar does:
+
+```
+brew instasll gnu-tar
 ```
