@@ -24,6 +24,8 @@
   * Git
     * [Gitflow](/detail/git/gitflow/README.md)
     * [Hooks](/detail/git/hooks/README.md)
+  * Javascript
+    * [es6](/detail/javascript/es6/README.md)
   * Mysql
     * [Profiling](/detail/mysql/profiling/README.md)
     * [Users](/detail/mysql/users/README.md)
