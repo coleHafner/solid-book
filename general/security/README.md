@@ -48,3 +48,22 @@ The ssh port can be change in `/etc/ssh/sshd_config`:
 ```
 Port 22
 ```
+
+## Disabling sslv3
+
+In the http context:
+
+http://nginx.org/en/docs/http/configuring_https_servers.html
+
+```
+##
+# SSL Settings
+##
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+ssl_ciphers  HIGH:!aNULL:!MD5;
+ssl_prefer_server_ciphers on;
+```
+
+Check your results:
+
+https://www.ssllabs.com/ssltest/

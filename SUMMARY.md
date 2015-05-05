@@ -6,7 +6,7 @@
   * DevOps
     * [Deployment](/general/devops/deployment/README.md)
   * Error Handling
-    * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)     
+    * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)
   * [File Upload](/general/file-upload/README.md)
   * [Profiling](/general/profiling/README.md)
   * [Version Control](/general/version-control/README.md)
@@ -14,6 +14,7 @@
   * [Security](/general/security/README.md)
 
 * Detail
+  * [Ansible](/detail/ansible/README.md)
   * [Elasticsearch](/detail/elasticsearch/README.md)
   * [FastCgi](/detail/fastcgi/README.md)
   * [Form](/detail/form/README.md)
