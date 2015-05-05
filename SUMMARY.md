@@ -1,12 +1,16 @@
 # Table of Contents
 
+* [Setting up a project](/general/architecture/project-setup/README.md)
+  * [Architecture](/general/architecture/README.md)
+    * [Scaffolding](/detail/grunt/grunt-init/README.md)
+  * [Deployment](/general/devops/deployment/README.md)
+
 * General
-  * [Code Quality]()
-    * [Architecture](/general/architecture/README.md)
-  * DevOps
-    * [Deployment](/general/devops/deployment/README.md)
+  * Code Quality
+
   * Error Handling
-    * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)
+    * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)  
+    * [JavaScript](/general/error-handling/javascript/README.md)
   * [File Upload](/general/file-upload/README.md)
   * [Profiling](/general/profiling/README.md)
   * [Version Control](/general/version-control/README.md)
@@ -21,6 +25,8 @@
   * Git
     * [Gitflow](/detail/git/gitflow/README.md)
     * [Hooks](/detail/git/hooks/README.md)
+  * Javascript
+    * [es6](/detail/javascript/es6/README.md)
   * Mysql
     * [Profiling](/detail/mysql/profiling/README.md)
     * [Users](/detail/mysql/users/README.md)
