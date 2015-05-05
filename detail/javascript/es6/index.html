@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Setting up a project | The Big Incomplete Book of Dev</title>
+        <title>es6 | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.0">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../general/architecture/index.html" />
+    <link rel="next" href="../../../detail/mysql/profiling/index.html" />
     
     
-    <link rel="prev" href="../../../index.html" />
+    <link rel="prev" href="../../../detail/git/hooks/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="1" data-basepath="../../.." data-revision="Tue May 05 2015 12:47:30 GMT-0700 (PDT)">
+    <div class="book" data-level="3.6.1" data-basepath="../../.." data-revision="Tue May 05 2015 12:47:30 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -66,7 +66,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="general/architecture/project-setup/index.html">
+        <li class="chapter " data-level="1" data-path="general/architecture/project-setup/index.html">
             
                 
                     <a href="../../../general/architecture/project-setup/index.html">
@@ -387,7 +387,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.6.1" data-path="detail/javascript/es6/index.html">
+        <li class="chapter active" data-level="3.6.1" data-path="detail/javascript/es6/index.html">
             
                 
                     <a href="../../../detail/javascript/es6/index.html">
@@ -675,12 +675,49 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="project-setup">Project Setup</h1>
-<p>This chapter describes a typical project setup. From deployment strategies, to
-code organization. Many of the concepts covered will aplly to any project, but
-we will be using a website running with Mongo, Node, and Nginx as the example.
-We&apos;ll assume the code is version controlled with git 2.3+. We&apos;ll also cover some
-PHP Fpm concepts.</p>
+                        <h1 id="es6">ES6</h1>
+<h2 id="let-keyword">Let keyword</h2>
+<p><code>var</code> is the old way of defining variables. It has function scope.</p>
+<p><code>let</code> is an es6 way pf defining variable; it has block scope.</p>
+<pre><code class="lang-javascript">
+<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// v1 exists but is undefined</span>
+  <span class="hljs-comment">// v2 doesn&apos;t exist</span>
+
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> v2=<span class="hljs-number">0</span>; v2&lt;<span class="hljs-number">10</span>; ++v2) {
+    <span class="hljs-comment">// v2 is defined</span>
+    <span class="hljs-comment">// v1 is defined</span>
+}
+
+  <span class="hljs-keyword">var</span> v1=<span class="hljs-number">0</span>;
+  <span class="hljs-comment">// v1 is defined</span>
+  <span class="hljs-comment">// v2 doesn&apos;t exist</span>
+}
+</code></pre>
+<h2 id="const-keyword">const keyword</h2>
+<p>gives you a constant that you cannot modify.</p>
+<h2 id="returning-multiple-values">returning multiple values</h2>
+<p>Can assign return value to an array and then lift out the variables:</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">account_info</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> info = <span class="hljs-string">&apos;something&apos;</span>,
+        err = <span class="hljs-built_in">Math</span>.random() &lt; <span class="hljs-number">0.5</span>;
+
+    <span class="hljs-keyword">return</span> [err ? <span class="hljs-literal">null</span> : info, err ? <span class="hljs-string">&apos;the reason&apos;</span> : <span class="hljs-literal">null</span>];
+}
+
+setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> info, error;
+
+    [info, error] = account_info();
+
+    <span class="hljs-keyword">if</span> (error) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;sorry&apos;</span>,error);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;welcome&apos;</span>,info);
+    }
+
+}, <span class="hljs-number">1000</span>);
+</code></pre>
 
                     
                     </section>
@@ -691,10 +728,10 @@ PHP Fpm concepts.</p>
         </div>
 
         
-        <a href="../../../index.html" class="navigation navigation-prev " aria-label="Previous page: "><i class="fa fa-angle-left"></i></a>
+        <a href="../../../detail/git/hooks/index.html" class="navigation navigation-prev " aria-label="Previous page: Hooks"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../general/architecture/index.html" class="navigation navigation-next " aria-label="Next page: Architecture"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../detail/mysql/profiling/index.html" class="navigation navigation-next " aria-label="Next page: Profiling"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
