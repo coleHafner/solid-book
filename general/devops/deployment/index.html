@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="1.2" data-basepath="../../.." data-revision="Tue May 05 2015 12:47:30 GMT-0700 (PDT)">
+    <div class="book" data-level="1.2" data-basepath="../../.." data-revision="Wed May 06 2015 10:50:04 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -702,6 +702,13 @@ git config receive.denyCurrentBranch updateInstead
 <p>This is the minimum setup. Additionally depending on the type of project, you
 might want to setup post-receive hooks. These can be used to <code>npm install &amp;&amp; pm2 restart</code>,
 notify New Relic of a deployment, etc.</p>
+<p>The two tricky part about hooks are:</p>
+<ol>
+<li><p>Hooks are run by the user that was used for the ssh access. This could be important - for example - when updating node projects, where the user is important.</p>
+</li>
+<li><p>Commands must be fully qualified, so <code>git</code> won&apos;t work, but <code>/usr/local/bin/git</code> would.</p>
+</li>
+</ol>
 <p>This completes the server setup. To setup your workbox, add the remote needed:</p>
 <pre><code>git remote add deployProduction ssh://username@domain.com:1234/var/www/foo.bar.com
 </code></pre><p>The format is the ssh login followed by the directory the git repo is in.</p>
