@@ -48,6 +48,12 @@ This is the minimum setup. Additionally depending on the type of project, you
 might want to setup post-receive hooks. These can be used to `npm install && pm2 restart`,
 notify New Relic of a deployment, etc.
 
+The two tricky part about hooks are:
+
+1. Hooks are run by the user that was used for the ssh access. This could be important - for example - when updating node projects, where the user is important.
+
+1. Commands must be fully qualified, so `git` won't work, but `/usr/local/bin/git` would.
+
 This completes the server setup. To setup your workbox, add the remote needed:
 
 ```
