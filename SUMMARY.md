@@ -6,8 +6,6 @@
   * [Deployment](/general/devops/deployment/README.md)
 
 * General
-  * Code Quality
-
   * Error Handling
     * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)  
     * [JavaScript](/general/error-handling/javascript/README.md)
@@ -16,7 +14,6 @@
   * [Version Control](/general/version-control/README.md)
   * [Issue tracking]()
   * [Security](/general/security/README.md)
-
 * Detail
   * [Ansible](/detail/ansible/README.md)
   * [Elasticsearch](/detail/elasticsearch/README.md)
@@ -27,6 +24,8 @@
     * [Hooks](/detail/git/hooks/README.md)
   * Javascript
     * [es6](/detail/javascript/es6/README.md)
+  * Mongo
+    * [Users](/detail/mongo/users/README.md)
   * Mysql
     * [Profiling](/detail/mysql/profiling/README.md)
     * [Users](/detail/mysql/users/README.md)
