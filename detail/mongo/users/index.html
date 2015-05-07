@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Scaffolding | The Big Incomplete Book of Dev</title>
+        <title>Users | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../general/devops/deployment/index.html" />
+    <link rel="next" href="../../../detail/mysql/profiling/index.html" />
     
     
-    <link rel="prev" href="../../../general/architecture/index.html" />
+    <link rel="prev" href="../../../detail/javascript/es6/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="1.1.1" data-basepath="../../.." data-revision="Thu May 07 2015 06:46:19 GMT-0700 (PDT)">
+    <div class="book" data-level="3.7.1" data-basepath="../../.." data-revision="Thu May 07 2015 06:46:19 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -98,7 +98,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1.1" data-path="detail/grunt/grunt-init/index.html">
+        <li class="chapter " data-level="1.1.1" data-path="detail/grunt/grunt-init/index.html">
             
                 
                     <a href="../../../detail/grunt/grunt-init/index.html">
@@ -408,7 +408,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.7.1" data-path="detail/mongo/users/index.html">
+        <li class="chapter active" data-level="3.7.1" data-path="detail/mongo/users/index.html">
             
                 
                     <a href="../../../detail/mongo/users/index.html">
@@ -708,12 +708,28 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="grunt-init">Grunt-init</h1>
-<p>Initially we used grunt for all of our scaffolding, build, and deploy needs. Now
-we tend to use grunt for tasks that involve configuration files or scaffolding.
-For dev our day to day dev workflow we tend to use Gulp, since it is much faster.
-This has the nice side effect of separating the files needed for dev workflow
-from the files needed for builds, deploy, and scaffolding.</p>
+                        <h1 id="creating-users-in-mongo">Creating users in Mongo</h1>
+<ol>
+<li>Authorize with the admin user, usually on the admin db.</li>
+<li>Switch to the db of interest.</li>
+<li>Create the user with appropriate roles.</li>
+</ol>
+<p>A simple example:</p>
+<pre><code class="lang-shell">$ mongo
+&gt; use admin;
+&gt; db.auth(&apos;admin&apos;, &apos;my-super-secret-password&apos;);
+&gt; use someDb;
+&gt; db.createUser({
+    user : &quot;someDbUser&quot;,
+    pwd : &quot;a-super-duper-password&quot;,
+    roles : [&quot;dbOwner&quot;]
+  });
+</code></pre>
+<p>References:</p>
+<ul>
+<li><a href="http://docs.mongodb.org/manual/reference/method/db.createUser/" target="_blank">http://docs.mongodb.org/manual/reference/method/db.createUser/</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/built-in-roles/#built-in-roles" target="_blank">http://docs.mongodb.org/manual/reference/built-in-roles/#built-in-roles</a></li>
+</ul>
 
                     
                     </section>
@@ -724,10 +740,10 @@ from the files needed for builds, deploy, and scaffolding.</p>
         </div>
 
         
-        <a href="../../../general/architecture/index.html" class="navigation navigation-prev " aria-label="Previous page: Architecture"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../detail/javascript/es6/index.html" class="navigation navigation-prev " aria-label="Previous page: es6"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../general/devops/deployment/index.html" class="navigation navigation-next " aria-label="Next page: Deployment"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../detail/mysql/profiling/index.html" class="navigation navigation-next " aria-label="Next page: Profiling"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
