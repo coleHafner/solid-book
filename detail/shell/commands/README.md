@@ -1,5 +1,13 @@
 # Common Shell Commands
 
+## Curl
+
+To display prettified JSON:
+
+```
+curl http://something.blah.yad | python -m json.tool
+```
+
 ## Links
 
 Creating a symbolic link:
