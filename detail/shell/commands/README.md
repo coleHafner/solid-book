@@ -8,6 +8,14 @@ To display prettified JSON:
 curl http://something.blah.yad | python -m json.tool
 ```
 
+## Dpkg
+
+List where apt-get installed something
+
+```
+dpkg -L nginx
+```
+
 ## Links
 
 Creating a symbolic link:
