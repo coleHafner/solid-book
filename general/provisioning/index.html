@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>FastCgi | The Big Incomplete Book of Dev</title>
+        <title>Provisioning | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../detail/form/index.html" />
+    <link rel="next" href="../../detail/ansible/playbooks/index.html" />
     
     
-    <link rel="prev" href="../../detail/elasticsearch/index.html" />
+    <link rel="prev" href="../../detail/grunt/grunt-init/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="3.3" data-basepath="../.." data-revision="Wed May 27 2015 22:02:36 GMT-0700 (PDT)">
+    <div class="book" data-level="1.2" data-basepath="../.." data-revision="Wed May 27 2015 22:02:36 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -118,7 +118,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="general/provisioning/index.html">
+        <li class="chapter active" data-level="1.2" data-path="general/provisioning/index.html">
             
                 
                     <a href="../../general/provisioning/index.html">
@@ -365,7 +365,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.3" data-path="detail/fastcgi/index.html">
+        <li class="chapter " data-level="3.3" data-path="detail/fastcgi/index.html">
             
                 
                     <a href="../../detail/fastcgi/index.html">
@@ -774,21 +774,37 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="fastcgi">FastCgi</h1>
-<h2 id="environmental-variables">Environmental variables</h2>
-<p>It&apos;s often convenient to define environemental variables as they are passed in.
-The allows per vhost setting for things like php&apos;s <code>$_SERVER[&apos;foo&apos;]</code>.</p>
-<pre><code># not sure if this is quite right
-fastcgi_param foo &quot;bar&quot;
-</code></pre><h2 id="prepend-and-append">Prepend and append</h2>
-<p>You can prepend and postpend files using nginx when passing to fastcgi with
-<code>fastcgi_param</code>. The same value can also be add to <code>php.ini</code>.</p>
-<pre><code>    fastcgi_param PHP_VALUE &quot;auto_prepend_file=/var/www/vhosts/profile/header.php
-auto_append_file=/var/www/vhosts/profile/footer.php&quot;;
-</code></pre><p>You can do the same with <code>auto_append_file</code> too.</p>
-<p>The functional difference between the two is that if you use nginx, you can
-easily control which virtual hosts receive the files, while in <code>php.ini</code> all
-vhosts will receive it.</p>
+                        <h1 id="provisioning">Provisioning</h1>
+<p>For each project you have to setup local, staging, and production environments.</p>
+<p>It is almost always useful to have a Vagrant environment ready to go for local dev.
+In some cases you may choose to not use it - for example node apps with limited data
+are often very easy to run locally, but it is very helpful to be able to setup things
+like nginx and databases on a Vagrant machine, so that you can emulate the server
+and not have to drastically change or break your own local environment.</p>
+<p>Vagrant uses a headless instance of Virtualbox to setup a virtual server that is
+hosted by your computer. Your computer is referred to as the host, and the virtual
+machine is referred to as the guest.</p>
+<p>Vagrant has many base boxes ready for use. It is best practive to use a Vagrant
+base box - such as <code>ubuntu/trusty64</code> - and provision it to cusomtize the environment.
+This is more transparent than the alternative of taking a base box, customizing it,
+and then using the snapshot of the customization for deving. Having the provisioning
+of a vanilla base box in version control makes what is on the box very transparent.</p>
+<p>Vagrant allows multiple methods of provisioning. Some are Puppet, shell, and Ansible.
+In our experience shell provisioning - while simplest to initially setup - is too
+difficult to maintain in the long run. You end up having to put too many conditionals
+in your shell script to make it work irrespective of the starting state of the box.
+Also shell script usually becomes spaghetti code, and instead of thinking about the
+state you want to server to be in you end up thinking about how to get the server there.</p>
+<p>Puppet is very full featured, but many devs find the syntax and details daunting to learn.
+I find the docs hard to navigate. You also have to install puppet on your servers.</p>
+<p>We found Ansible to have the smallest learning curve and the easiest to use in
+practice. The only server dependency for Ansible is SSH access to the server.
+Locally you have to have ansible installed, on a Mac this is:</p>
+<pre><code class="lang-shell">sudo easy_install pip
+sudo pip install ansible
+</code></pre>
+<p>Ansible is written in python. Its commands are run in sequential order, which in my experience
+makes it easier to debug than Puppet - which decdides upon the order to run things in.</p>
 
                     
                     </section>
@@ -799,10 +815,10 @@ vhosts will receive it.</p>
         </div>
 
         
-        <a href="../../detail/elasticsearch/index.html" class="navigation navigation-prev " aria-label="Previous page: Elasticsearch"><i class="fa fa-angle-left"></i></a>
+        <a href="../../detail/grunt/grunt-init/index.html" class="navigation navigation-prev " aria-label="Previous page: Scaffolding"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../detail/form/index.html" class="navigation navigation-next " aria-label="Next page: Form"><i class="fa fa-angle-right"></i></a>
+        <a href="../../detail/ansible/playbooks/index.html" class="navigation navigation-next " aria-label="Next page: Initial setup"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
