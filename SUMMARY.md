@@ -3,6 +3,9 @@
 * [Setting up a project](/general/architecture/project-setup/README.md)
   * [Architecture](/general/architecture/README.md)
     * [Scaffolding](/detail/grunt/grunt-init/README.md)
+  * [Provisioning](/general/provisioning/README.md)
+    * [Initial setup](/detail/ansible/playbooks/README.md)
+    * [Creating roles](/detail/ansible/roles/README.md)
   * [Workflow](general/workflow/README.md)
   * [Deployment](/general/devops/deployment/README.md)
 

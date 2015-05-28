@@ -13,6 +13,8 @@ sudo pip install ansible
 
 If you are testing things out on vagrant and need to use a password with ssh,
 you might have to [install `sshpass`](http://fauxzen.com/installing-sshpass-os-x/).
+Though you don't need to install anything extra if you are simply using Ansible
+as a provisioning agent for Vagrant.
 
 We'll put everything in a directory. Create the directory and then we'll start by
 setting up an Ansible hosts file. Below is an example setting up 2 vagrant boxes
