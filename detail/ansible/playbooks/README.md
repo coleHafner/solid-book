@@ -1,8 +1,8 @@
 # Creating an Ansible playbook
 
-You can create an Ansible playbook with a set of roles. You can run roles based
-on the hosts. You will probably end up running similar - though slightly different -
-roles for your different hosts (local, staging, production).
+You can create an Ansible playbook with a set of roles. You will usually run roles
+based on the host groups. You will probably end up running similar - though slightly different -
+roles for your different host groups (local, staging, production).
 
 You can quickly setup an Ansible playbook with a corresponding Vagrantfile using
 the `ansible-ubuntu` npm. To use the npm, install it, then run it in the directory
