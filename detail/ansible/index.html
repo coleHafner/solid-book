@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="3.1" data-basepath="../.." data-revision="Wed May 27 2015 22:02:36 GMT-0700 (PDT)">
+    <div class="book" data-level="3.1" data-basepath="../.." data-revision="Wed Jun 10 2015 07:10:56 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -134,13 +134,28 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="detail/ansible/playbooks/index.html">
+        <li class="chapter active" data-level="1.2.1" data-path="detail/ansible/index.html">
+            
+                
+                    <a href="../../detail/ansible/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.1.</b>
+                        
+                        Ansible Intro
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="detail/ansible/playbooks/index.html">
             
                 
                     <a href="../../detail/ansible/playbooks/index.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.2.1.</b>
+                            <b>1.2.2.</b>
                         
                         Initial setup
                     </a>
@@ -149,13 +164,13 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="detail/ansible/roles/index.html">
+        <li class="chapter " data-level="1.2.3" data-path="detail/ansible/roles/index.html">
             
                 
                     <a href="../../detail/ansible/roles/index.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>1.2.2.</b>
+                            <b>1.2.3.</b>
                         
                         Creating roles
                     </a>
@@ -775,6 +790,11 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="ansible">Ansible</h1>
+<p>Ansible allows you to guarantee an environment on one or many servers. At a high
+level you run a playbook that has roles made up of tasks. Each role is a functional
+chunck. For example there can be a &quot;git&quot; role that ensures git 2.3+ is available.</p>
+<p>It is a good idea to separate general from project specific roles. For example
+you could have an <code>nginx</code> role and an <code>nginx-project</code> role.</p>
 <p>One of the nice things about Ansible is that it doesn&apos;t require anything else
 than having Ansible installed locally and ssh access to the servers being
 managed.</p>
@@ -782,7 +802,7 @@ managed.</p>
 <pre><code class="lang-shell">sudo easy_install pip
 sudo pip install ansible
 </code></pre>
-<p>If you are testing things out on vagrant and need to use a password with ssh,
+<p>If you are testing things out on vagrant - and not using just plain <code>vagrant up</code> - and need to use a password with ssh,
 you might have to <a href="http://fauxzen.com/installing-sshpass-os-x/" target="_blank">install <code>sshpass</code></a>.
 Though you don&apos;t need to install anything extra if you are simply using Ansible
 as a provisioning agent for Vagrant.</p>
