@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="3.11.1" data-basepath="../../.." data-revision="Fri Jun 12 2015 11:27:32 GMT-0700 (PDT)">
+    <div class="book" data-level="3.11.1" data-basepath="../../.." data-revision="Fri Jun 12 2015 11:30:53 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -813,6 +813,7 @@ ansible-playbook ansible/site.yml -l $ENVIRONMENT -i ansible/hosts --ask-sudo-pa
 </code></pre><p><code>#!/usr/bin/env bash</code> is more flexible than <code>#!/bin/bash/</code>. This means no flags on the first line and have to use, <code>set -x</code> for flags.</p>
 <p>Use <code>while</code> and <code>shift</code> to grab the flags from the comand. Use <code>-h</code> to echo help and stop.</p>
 <p>Can alias it once done, e.g. alias <code>provision=./home/user/provision</code> or <code>ln -s</code> it to somewhere <code>$PATH</code> looks... example: <code>ln -s /home/user/provision /usr/bin/local/provision</code>.</p>
+<p><a href="https://gist.github.com/pajtai/de2315fafde61e82ac17" target="_blank">Other similar example</a></p>
 <p>Useful flags: </p>
 <ul>
 <li><code>-e</code> stops on first error. </li>
