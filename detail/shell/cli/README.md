@@ -38,8 +38,13 @@ ansible-playbook ansible/site.yml -l $ENVIRONMENT -i ansible/hosts --ask-sudo-pa
 
 ```
 
-`#!/usr/bin/env bash` is more flexible. This means no flags and have to use, `set -x` for flags.
+`#!/usr/bin/env bash` is more flexible than `#!/bin/bash/`. This means no flags on the first line and have to use, `set -x` for flags.
 
 Use `while` and `shift` to grab the flags from the comand. Use `-h` to echo help and stop.
 
 Can alias it once done, e.g. alias `provision=./home/user/provision` or `ln -s` it to somewhere `$PATH` looks... example: `ln -s /home/user/provision /usr/bin/local/provision`.
+
+Useful flags: 
+* `-e` stops on first error. 
+* `-x` expands all commands (great for debugging). 
+* `-u` can't refer to uninitialized variables.
