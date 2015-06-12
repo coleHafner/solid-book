@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="3.11.1" data-basepath="../../.." data-revision="Fri Jun 12 2015 11:30:53 GMT-0700 (PDT)">
+    <div class="book" data-level="3.11.1" data-basepath="../../.." data-revision="Fri Jun 12 2015 11:34:32 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -779,7 +779,7 @@
                     
                         <h1 id="creating-cli-commands">Creating cli commands</h1>
 <h2 id="example">Example</h2>
-<pre><code>#!/usr/bin/env bash
+<pre><code class="lang-shell">#!/usr/bin/env bash
 #set -x # for debugging
 
     while test $# -gt 0; do
@@ -810,9 +810,13 @@
     done
 
 ansible-playbook ansible/site.yml -l $ENVIRONMENT -i ansible/hosts --ask-sudo-pass
-</code></pre><p><code>#!/usr/bin/env bash</code> is more flexible than <code>#!/bin/bash/</code>. This means no flags on the first line and have to use, <code>set -x</code> for flags.</p>
+</code></pre>
+<p><code>#!/usr/bin/env bash</code> is more flexible than <code>#!/bin/bash/</code>. This means no flags on the first line and have to use, <code>set -x</code> for flags.</p>
 <p>Use <code>while</code> and <code>shift</code> to grab the flags from the comand. Use <code>-h</code> to echo help and stop.</p>
 <p>Can alias it once done, e.g. alias <code>provision=./home/user/provision</code> or <code>ln -s</code> it to somewhere <code>$PATH</code> looks... example: <code>ln -s /home/user/provision /usr/bin/local/provision</code>.</p>
+<p>Example of, &quot;if then else&quot;:</p>
+<pre><code class="lang-shell">if [ -n &quot;$MYSQL_DB&quot; ]; then echo &quot;custom mysql db set to $MYSQL_DB&quot;; else MYSQL_DB=$THE_THEME; fi
+</code></pre>
 <p><a href="https://gist.github.com/pajtai/de2315fafde61e82ac17" target="_blank">Other similar example</a></p>
 <p>Useful flags: </p>
 <ul>
