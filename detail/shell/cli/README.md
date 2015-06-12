@@ -44,6 +44,8 @@ Use `while` and `shift` to grab the flags from the comand. Use `-h` to echo help
 
 Can alias it once done, e.g. alias `provision=./home/user/provision` or `ln -s` it to somewhere `$PATH` looks... example: `ln -s /home/user/provision /usr/bin/local/provision`.
 
+[Other similar example](https://gist.github.com/pajtai/de2315fafde61e82ac17)
+
 Useful flags: 
 * `-e` stops on first error. 
 * `-x` expands all commands (great for debugging). 
