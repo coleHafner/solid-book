@@ -46,7 +46,7 @@ Can alias it once done, e.g. alias `provision=./home/user/provision` or `ln -s` 
 
 Example of, "if then else":
 
-```
+```shell
 if [ -n "$MYSQL_DB" ]; then echo "custom mysql db set to $MYSQL_DB"; else MYSQL_DB=$THE_THEME; fi
 ```
 
