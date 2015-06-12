@@ -8,7 +8,7 @@
         <title>CLI | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.0.1">
+        <meta name="generator" content="GitBook 2.0.0">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="3.11.1" data-basepath="../../.." data-revision="Thu Jun 11 2015 15:30:21 GMT-0700 (PDT)">
+    <div class="book" data-level="3.11.1" data-basepath="../../.." data-revision="Fri Jun 12 2015 11:27:32 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -691,9 +691,7 @@
         
         <li class="divider"></li>
         <li>
-            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                Published with GitBook
-            </a>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">Published with GitBook</a>
         </li>
         
     </ul>
@@ -745,21 +743,11 @@
                 <span class="caret-inner"></span>
             </div>
             <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
+                <button type="button" data-sharing="twitter" class="button">Share on Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Share on Google</button>
+                <button type="button" data-sharing="facebook" class="button">Share on Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Share on Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Share on Instapaper</button>
             </div>
         </div>
     </div>
@@ -791,8 +779,47 @@
                     
                         <h1 id="creating-cli-commands">Creating cli commands</h1>
 <h2 id="example">Example</h2>
-<pre><code>#!/bin/bash -eu
-</code></pre>
+<pre><code>#!/usr/bin/env bash
+#set -x # for debugging
+
+    while test $# -gt 0; do
+        case &quot;$1&quot; in
+            -h|--help)
+                echo &quot;Ansible provisioning&quot;
+                echo &quot; &quot;
+                echo &quot;Provisions servers via Ansible. Must be run from project root&quot;
+                echo &quot; &quot;
+                echo &quot;options:&quot;
+                echo &quot;-h, --help        show help&quot;
+                echo &quot;-s|--staging      provision staging servers&quot;
+                echo &quot;-p|--production   provision production servers&quot;
+                exit 0
+                ;;
+            -s|--staging)
+                shift
+                ENVIRONMENT=&quot;staging&quot;
+                ;;
+            -p|--production)
+                shift
+                ENVIRONMENT=&quot;production&quot;
+                ;;
+            *)
+                break
+                ;;
+        esac
+    done
+
+ansible-playbook ansible/site.yml -l $ENVIRONMENT -i ansible/hosts --ask-sudo-pass
+</code></pre><p><code>#!/usr/bin/env bash</code> is more flexible than <code>#!/bin/bash/</code>. This means no flags on the first line and have to use, <code>set -x</code> for flags.</p>
+<p>Use <code>while</code> and <code>shift</code> to grab the flags from the comand. Use <code>-h</code> to echo help and stop.</p>
+<p>Can alias it once done, e.g. alias <code>provision=./home/user/provision</code> or <code>ln -s</code> it to somewhere <code>$PATH</code> looks... example: <code>ln -s /home/user/provision /usr/bin/local/provision</code>.</p>
+<p>Useful flags: </p>
+<ul>
+<li><code>-e</code> stops on first error. </li>
+<li><code>-x</code> expands all commands (great for debugging). </li>
+<li><code>-u</code> can&apos;t refer to uninitialized variables.</li>
+</ul>
+
                     
                     </section>
                 
