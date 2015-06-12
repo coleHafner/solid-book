@@ -44,6 +44,12 @@ Use `while` and `shift` to grab the flags from the comand. Use `-h` to echo help
 
 Can alias it once done, e.g. alias `provision=./home/user/provision` or `ln -s` it to somewhere `$PATH` looks... example: `ln -s /home/user/provision /usr/bin/local/provision`.
 
+Example of, "if then else":
+
+```
+if [ -n "$MYSQL_DB" ]; then echo "custom mysql db set to $MYSQL_DB"; else MYSQL_DB=$THE_THEME; fi
+```
+
 [Other similar example](https://gist.github.com/pajtai/de2315fafde61e82ac17)
 
 Useful flags: 
