@@ -3,7 +3,7 @@
 
 ## Example
 
-```
+```shell
 #!/usr/bin/env bash
 #set -x # for debugging
 
