@@ -42,7 +42,6 @@
     * [Config](/detail/nginx/config/README.md)
     * [Fastcgi cache](/detail/nginx/fastcgi-cache/README.md)
   * PHP
-    * [Xdebug & Vagrant](/detail/php/xdebug/README.md)
     * [Mysql extension](/detail/php/mysql-extension/README.md)
   * Shell
     * [CLI](/detail/shell/cli/README.md)
