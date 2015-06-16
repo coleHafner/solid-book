@@ -7,8 +7,10 @@
     * [Ansible Intro](/detail/ansible/README.md)
     * [Initial setup](/detail/ansible/playbooks/README.md)
     * [Creating roles](/detail/ansible/roles/README.md)
-  * [Workflow](general/workflow/README.md)
-  * [Deployment](/general/devops/deployment/README.md)
+* Working on a project
+  * [Workflow](/general/workflow/README.md)
+  * [Debugging](/detail/node/debugging/README.md)
+* [Deploying a project](/general/devops/deployment/README.md)
 
 * General
   * Error Handling
