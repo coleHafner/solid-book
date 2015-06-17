@@ -3,6 +3,7 @@
 * [Setting up a project](/general/architecture/project-setup/README.md)
   * [Architecture](/general/architecture/README.md)
     * [Scaffolding](/detail/grunt/grunt-init/README.md)
+    * [Productions vs Dev](/detail/node/environments/README.md)
   * [Provisioning](/general/provisioning/README.md)
     * [Ansible Intro](/detail/ansible/README.md)
     * [Initial setup](/detail/ansible/playbooks/README.md)

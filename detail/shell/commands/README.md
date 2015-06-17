@@ -8,6 +8,18 @@ To display prettified JSON:
 curl http://something.blah.yad | python -m json.tool
 ```
 
+## Disk usage
+
+```
+# disk usage, human readable
+du -h
+# disk usage, summary per directory
+du -sh
+
+# free space
+df -h
+```
+
 ## Dpkg
 
 List where apt-get installed something
