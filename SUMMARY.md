@@ -7,42 +7,29 @@
     * [Ansible Intro](/detail/ansible/README.md)
     * [Initial setup](/detail/ansible/playbooks/README.md)
     * [Creating roles](/detail/ansible/roles/README.md)
-* Working on a project
-  * [Workflow](/general/workflow/README.md)
-  * Debugging
-    * [Debugging Node](/detail/node/debugging/README.md)
-    * [Debugging PHP](/detail/php/xdebug/README.md)
+* [Project Workflow](/general/workflow/README.md)
+  * [Debugging Node](/detail/node/debugging/README.md)
+  * [Debugging PHP](/detail/php/xdebug/README.md)
 * [Deploying a project](/general/devops/deployment/README.md)
 
-* General
-  * Error Handling
-    * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)  
-    * [JavaScript](/general/error-handling/javascript/README.md)
+* [Misc](/general/misc/README.md)
+  * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)  
+  * [JavaScript](/general/error-handling/javascript/README.md)
   * [File Upload](/general/file-upload/README.md)
   * [Profiling](/general/profiling/README.md)
   * [Version Control](/general/version-control/README.md)
-  * [Issue tracking]()
   * [Security](/general/security/README.md)
-* Detail
-  * [Ansible](/detail/ansible/README.md)
   * [Elasticsearch](/detail/elasticsearch/README.md)
   * [FastCgi](/detail/fastcgi/README.md)
   * [Form](/detail/form/README.md)
-  * Git
-    * [Gitflow](/detail/git/gitflow/README.md)
-    * [Hooks](/detail/git/hooks/README.md)
-  * Javascript
-    * [es6](/detail/javascript/es6/README.md)
-  * Mongo
-    * [Users](/detail/mongo/users/README.md)
-  * Mysql
-    * [Profiling](/detail/mysql/profiling/README.md)
-    * [Users](/detail/mysql/users/README.md)
-  * Nginx
-    * [Config](/detail/nginx/config/README.md)
-    * [Fastcgi cache](/detail/nginx/fastcgi-cache/README.md)
-  * PHP
-    * [Mysql extension](/detail/php/mysql-extension/README.md)
-  * Shell
-    * [CLI](/detail/shell/cli/README.md)
-    * [Commands](/detail/shell/commands/README.md)
+  * [Gitflow](/detail/git/gitflow/README.md)
+  * [Hooks](/detail/git/hooks/README.md)
+  * [es6](/detail/javascript/es6/README.md)
+  * [Users](/detail/mongo/users/README.md)
+  * [Profiling](/detail/mysql/profiling/README.md)
+  * [Users](/detail/mysql/users/README.md)
+  * [Config](/detail/nginx/config/README.md)
+  * [Fastcgi cache](/detail/nginx/fastcgi-cache/README.md)
+  * [Mysql extension](/detail/php/mysql-extension/README.md)
+  * [CLI](/detail/shell/cli/README.md)
+  * [Commands](/detail/shell/commands/README.md)
