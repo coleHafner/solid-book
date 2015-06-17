@@ -1,5 +1,13 @@
 # Common Shell Commands
 
+## Check if command exists from script
+
+```
+hash mongo 2>/dev/null || { echo "no mongo" }
+```
+
+http://stackoverflow.com/a/677212/186636
+
 ## Curl
 
 To display prettified JSON:
