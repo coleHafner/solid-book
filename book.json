@@ -1,6 +1,6 @@
 {
     "gitbook": ">=2.0.0",
-    "plugins": [ "jsfiddle", "collapsible-menu"],
+    "plugins": [ "jsfiddle"],
     "pluginsConfig": {
           "jsfiddle":{
             "tabs":["result","js","css", "html"],

@@ -11,6 +11,7 @@
 * [Project Workflow](/general/workflow/README.md)
   * [Debugging Node](/detail/node/debugging/README.md)
   * [Debugging PHP](/detail/php/xdebug/README.md)
+  * [Working with promises](/detail/node/promises/README.md)
 * [Deploying a project](/general/devops/deployment/README.md)
 
 * [Misc](/general/misc/README.md)
