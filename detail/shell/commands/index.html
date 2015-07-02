@@ -34,7 +34,7 @@
     
 
         
-    <div class="book" data-level="4.20" data-basepath="../../.." data-revision="Wed Jun 17 2015 05:37:13 GMT-0700 (PDT)">
+    <div class="book" data-level="4.20" data-basepath="../../.." data-revision="Wed Jul 01 2015 22:24:15 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -105,6 +105,21 @@
                             <b>1.1.1.</b>
                         
                         Scaffolding
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="detail/node/environments/index.html">
+            
+                
+                    <a href="../../../detail/node/environments/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        Productions vs Dev
                     </a>
                 
             
@@ -227,6 +242,21 @@
                             <b>2.2.</b>
                         
                         Debugging PHP
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="detail/node/promises/index.html">
+            
+                
+                    <a href="../../../detail/node/promises/index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Working with promises
                     </a>
                 
             
@@ -678,9 +708,20 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="common-shell-commands">Common Shell Commands</h1>
+<h2 id="check-if-command-exists-from-script">Check if command exists from script</h2>
+<pre><code>hash mongo 2&gt;/dev/null || { echo &quot;no mongo&quot; }
+</code></pre><p><a href="http://stackoverflow.com/a/677212/186636" target="_blank">http://stackoverflow.com/a/677212/186636</a></p>
 <h2 id="curl">Curl</h2>
 <p>To display prettified JSON:</p>
 <pre><code>curl http://something.blah.yad | python -m json.tool
+</code></pre><h2 id="disk-usage">Disk usage</h2>
+<pre><code># disk usage, human readable
+du -h
+# disk usage, summary per directory
+du -sh
+
+# free space
+df -h
 </code></pre><h2 id="dpkg">Dpkg</h2>
 <p>List where apt-get installed something</p>
 <pre><code>dpkg -L nginx
@@ -754,10 +795,6 @@ Mac, but gnu tar does:</p>
 
     
     <script src="../../../gitbook/plugins/gitbook-plugin-jsfiddle/plugin.js"></script>
-    
-
-    
-    <script src="../../../gitbook/plugins/gitbook-plugin-collapsible-menu/plugin.js"></script>
     
 
 <script>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Debugging Node | The Big Incomplete Book of Dev</title>
+        <title>Working with promises | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../detail/php/xdebug/index.html" />
+    <link rel="next" href="../../../general/devops/deployment/index.html" />
     
     
-    <link rel="prev" href="../../../general/workflow/index.html" />
+    <link rel="prev" href="../../../detail/php/xdebug/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="2.1" data-basepath="../../.." data-revision="Wed Jul 01 2015 22:24:15 GMT-0700 (PDT)">
+    <div class="book" data-level="2.3" data-basepath="../../.." data-revision="Wed Jul 01 2015 22:24:15 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -220,7 +220,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="2.1" data-path="detail/node/debugging/index.html">
+        <li class="chapter " data-level="2.1" data-path="detail/node/debugging/index.html">
             
                 
                     <a href="../../../detail/node/debugging/index.html">
@@ -250,7 +250,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="detail/node/promises/index.html">
+        <li class="chapter active" data-level="2.3" data-path="detail/node/promises/index.html">
             
                 
                     <a href="../../../detail/node/promises/index.html">
@@ -709,43 +709,133 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="debugging-node-running-on-a-remote-server">Debugging Node running on a remote server</h1>
-<p>Node uses a <a href="https://nodejs.org/api/debugger.html" target="_blank">TCP interface</a> for debugging, so if you can get a handle on the right port, you can debug apps running remotely. This means you can run through code on staging, Vagrant, etc. The following shows you how to start node with the debug flag and use an SSH tunnel to access the right port.</p>
-<p>Things you need:</p>
-<ul>
-<li>ssh access to the server</li>
-<li>ability to restart node app with <code>--debug</code> flag or <code>node-inspector</code> installed on server</li>
-</ul>
-<h2 id="debugging-using-webstorm">Debugging using Webstorm</h2>
-<ol>
-<li>Stop the app</li>
-<li><p>Restart with <code>--debug</code> flag (and include any necessary env flags) (could setup a name pm2 for this)</p>
-<pre><code class="lang-bash"> <span class="hljs-comment"># example with an env variable sent int</span>
- NODE_ENV=staging node --debug /home/node_user/my-app
+                        <h1 id="working-with-promises">Working with promises</h1>
+<p>Bluebird has a good section on anti patterns.</p>
+<p>In general your then blocks should be small. Functions should return promises vs
+passing promise chains in to functions, and the modification of the context should
+always be at the same level of visibility as the bind. Specifics below:</p>
+<h2 id="return-a-promise">Return a promise</h2>
+<p>If your functions return a promise, it is easy to reuse them.</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doWork</span><span class="hljs-params">(work)</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BB(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(resolve)</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      resolve(<span class="hljs-string">&apos;done with &apos;</span> + work);
+    }, <span class="hljs-number">500</span>);
+  }
+}
 </code></pre>
-</li>
-<li><p>When it starts you should see something like <code>debugger listening on 5858</code></p>
-</li>
-<li>Setup webstorm<ol>
-<li><code>Run &gt; Debug... &gt; Edit Configurations... &gt; Add new configuration &gt; Node.js Remote Debug</code></li>
-<li>Host : <code>127.0.0.1</code> - Port : <code>5858</code></li>
-</ol>
-</li>
-<li><p>Open SSH Tunnel to gain access to servers port 5858.</p>
-<pre><code class="lang-bash"> <span class="hljs-comment"># open an ssh tunnel, send it to the bg, and wait 10 seconds for connections</span>
- <span class="hljs-comment"># once all connections are closed after 10 seconds then close the tunnel</span>
- ssh <span class="hljs-operator">-f</span> -o ExitOnForwardFailure=yes -L <span class="hljs-number">5858</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">5858</span> node_user@<span class="hljs-number">168.144</span>.<span class="hljs-number">24.98</span> sleep <span class="hljs-number">10</span>
+<p>Now you can create more async functions out of this:</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doMuchWork</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> BB.all([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>].map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(work)</span> </span>{
+    <span class="hljs-keyword">return</span> doWork(work);
+  }));
+}
 </code></pre>
-</li>
-<li><p>Make sure you checkout the same code on your local machine as on the remote server.</p>
-</li>
-<li>Run the debugger in Webstorm (drop down in upper right next to the Bug icon - or the bug icon once you&apos;ve run it once)</li>
-</ol>
-<h2 id="debugging-using-node-inspector-https-github-com-node-inspector-node-inspector">Debugging using <a href="https://github.com/node-inspector/node-inspector" target="_blank">Node Inspector</a></h2>
-<p>You can follow similar instruction for using <a href="https://github.com/node-inspector/node-inspector" target="_blank">node-inspector</a> just use port <code>8080</code> instead of <code>5858</code> and open Chrome at: <a href="http://127.0.0.1:8080/?ws=127.0.0.1:8080&amp;port=5858" target="_blank">http://127.0.0.1:8080/?ws=127.0.0.1:8080&amp;port=5858</a> (you might want to use the <code>--debug-brk</code> flag instead of the <code>debug</code> flag if you can&apos;t set a breakpoint in time. Instead of starting with the debug flag, you woul install node incpector on the server and start the app using that.</p>
-<p>In practice using Webstorm - port 5858 directly - seems to work much better.</p>
-<h2 id="last-steps">Last Steps</h2>
-<p>If needed don&apos;t forget to stop the app and restart without the debug flag.</p>
+<p>This enables a clear control flow:</p>
+<pre><code class="lang-javascript">BB
+  .try(doMuchWork)
+  .then(doMuchMoreWork);
+</code></pre>
+<p>The antipattern to this is passing in promise chains that get added to:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// this is brittle and hard to modularize</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doWork</span><span class="hljs-params">(work, promises)</span> </span>{
+  promises.push(doSomething(work));
+  <span class="hljs-keyword">return</span> promises;
+}
+</code></pre>
+<h2 id="modify-the-context-at-one-level-of-visibility">Modify the context at one level of visibility</h2>
+<p>BB has a very useful method called bind:</p>
+<pre><code class="lang-javascript">BB
+  .bind({
+    name : <span class="hljs-string">&apos;ratatat&apos;</span>
+  })
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name); <span class="hljs-comment">// ratatat</span>
+  });
+</code></pre>
+<p>The context is useful for building up a complex compound result, but the context
+can become difficult to manage. To ease in its management, do not hide it&apos;s modification,
+but modify it at the same level of visibility as it is bound:</p>
+<pre><code class="lang-javascript">BB
+    .bind({
+      id : <span class="hljs-string">&apos;abc&apos;</span>,
+      name : <span class="hljs-literal">null</span>
+    })
+    .then(getName)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(name)</span> </span>{
+      <span class="hljs-keyword">this</span>.name = name;
+    })
+    .then(returnResult);
+</code></pre>
+<p>The above is much easier to debug than having <code>this.name = name</code> inside the <code>getName</code>
+function.</p>
+<p>It is important to keep in mind that newly create chains are unbound so you have to rebind them:</p>
+<pre><code class="lang-javascript">BB
+  .bind({
+    name:<span class="hljs-string">&apos;jane&apos;</span>
+  })
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+      <span class="hljs-comment">// Creating a new chain, so you have to bind it</span>
+      <span class="hljs-keyword">return</span> BB
+        .bind(<span class="hljs-keyword">this</span>)
+        .then(doSomething);
+  });
+</code></pre>
+<h2 id="start-chains-with-a-function-reference">Start chains with a function reference</h2>
+<p>If you start a chain with a function call, then synchronous errors in that function
+are not caugh by the promise, so use a function reference:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// errors from functionReference will be caught by BB</span>
+BB
+    .try(functionReference)
+    .then(...)
+
+<span class="hljs-comment">// functionReference will through synchronous errors</span>
+functionReference()
+    .then()
+</code></pre>
+<h2 id="use-join-if-you-know-how-many-promises-you-have">Use join if you know how many promises you have:</h2>
+<p>Note that the last function is the callback:</p>
+<pre><code class="lang-javascript">BB.join(getNames(), getNumbers(), <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(name, numbers)</span> </span>{
+
+  });
+</code></pre>
+<p>Combining BB with array / lodash methods can be very expressive:</p>
+<h2 id="try-to-keep-the-control-flow-as-unified-as-possible-and-break-out-the-async-work">Try to keep the control flow as unified as possible, and break out the async work</h2>
+<p>This often make future modifications and debugging easier. It keeps function logic separate
+from control flow.</p>
+<pre><code class="lang-javascript">BB.try(getPartOne)
+  .then(getPartTwo)
+  .then(getPartThree)
+  .then(assembleParts);
+</code></pre>
+<p>vs making a method call called <code>getParts</code> which chains the different get part calls.</p>
+<h2 id="try-to-have-as-few-catches-as-possible-with-specific-throws">Try to have as few catches as possible with specific throws</h2>
+<pre><code class="lang-javascript">BB.try(getPartOne)
+  .then(getPartTwo)
+  .then(getPartThree)
+  .catch();
+</code></pre>
+<p>vs having a catch in each get part. Remember if you do have a catch in each part, the
+chain will keep going on an error and not terminate:</p>
+<pre><code class="lang-javascript">BB.try(getPartOne)
+  .then(getPartTwo)
+  .then(getPartThree)
+  .catch();
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPartOne</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> BB.try(...)
+      .catch();
+  }
+</code></pre>
+<p>is equal to:</p>
+<pre><code class="lang-javascript">BB.try(getPartOne)
+  .catch(...)
+  .then(getPartTwo)
+  .then(getPartThree)
+  .catch();
+</code></pre>
+<p>so, you&apos;ll always get to getPartTwo.</p>
 
                     
                     </section>
@@ -756,10 +846,10 @@
         </div>
 
         
-        <a href="../../../general/workflow/index.html" class="navigation navigation-prev " aria-label="Previous page: Project Workflow"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../detail/php/xdebug/index.html" class="navigation navigation-prev " aria-label="Previous page: Debugging PHP"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../detail/php/xdebug/index.html" class="navigation navigation-next " aria-label="Next page: Debugging PHP"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../general/devops/deployment/index.html" class="navigation navigation-next " aria-label="Next page: Deploying a project"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

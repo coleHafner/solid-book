@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Debugging Node | The Big Incomplete Book of Dev</title>
+        <title>Productions vs Dev | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../detail/php/xdebug/index.html" />
+    <link rel="next" href="../../../general/provisioning/index.html" />
     
     
-    <link rel="prev" href="../../../general/workflow/index.html" />
+    <link rel="prev" href="../../../detail/grunt/grunt-init/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="2.1" data-basepath="../../.." data-revision="Wed Jul 01 2015 22:24:15 GMT-0700 (PDT)">
+    <div class="book" data-level="1.1.2" data-basepath="../../.." data-revision="Wed Jul 01 2015 22:24:15 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -113,7 +113,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.2" data-path="detail/node/environments/index.html">
+        <li class="chapter active" data-level="1.1.2" data-path="detail/node/environments/index.html">
             
                 
                     <a href="../../../detail/node/environments/index.html">
@@ -220,7 +220,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="2.1" data-path="detail/node/debugging/index.html">
+        <li class="chapter " data-level="2.1" data-path="detail/node/debugging/index.html">
             
                 
                     <a href="../../../detail/node/debugging/index.html">
@@ -709,43 +709,10 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="debugging-node-running-on-a-remote-server">Debugging Node running on a remote server</h1>
-<p>Node uses a <a href="https://nodejs.org/api/debugger.html" target="_blank">TCP interface</a> for debugging, so if you can get a handle on the right port, you can debug apps running remotely. This means you can run through code on staging, Vagrant, etc. The following shows you how to start node with the debug flag and use an SSH tunnel to access the right port.</p>
-<p>Things you need:</p>
-<ul>
-<li>ssh access to the server</li>
-<li>ability to restart node app with <code>--debug</code> flag or <code>node-inspector</code> installed on server</li>
-</ul>
-<h2 id="debugging-using-webstorm">Debugging using Webstorm</h2>
-<ol>
-<li>Stop the app</li>
-<li><p>Restart with <code>--debug</code> flag (and include any necessary env flags) (could setup a name pm2 for this)</p>
-<pre><code class="lang-bash"> <span class="hljs-comment"># example with an env variable sent int</span>
- NODE_ENV=staging node --debug /home/node_user/my-app
-</code></pre>
-</li>
-<li><p>When it starts you should see something like <code>debugger listening on 5858</code></p>
-</li>
-<li>Setup webstorm<ol>
-<li><code>Run &gt; Debug... &gt; Edit Configurations... &gt; Add new configuration &gt; Node.js Remote Debug</code></li>
-<li>Host : <code>127.0.0.1</code> - Port : <code>5858</code></li>
-</ol>
-</li>
-<li><p>Open SSH Tunnel to gain access to servers port 5858.</p>
-<pre><code class="lang-bash"> <span class="hljs-comment"># open an ssh tunnel, send it to the bg, and wait 10 seconds for connections</span>
- <span class="hljs-comment"># once all connections are closed after 10 seconds then close the tunnel</span>
- ssh <span class="hljs-operator">-f</span> -o ExitOnForwardFailure=yes -L <span class="hljs-number">5858</span>:<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">5858</span> node_user@<span class="hljs-number">168.144</span>.<span class="hljs-number">24.98</span> sleep <span class="hljs-number">10</span>
-</code></pre>
-</li>
-<li><p>Make sure you checkout the same code on your local machine as on the remote server.</p>
-</li>
-<li>Run the debugger in Webstorm (drop down in upper right next to the Bug icon - or the bug icon once you&apos;ve run it once)</li>
-</ol>
-<h2 id="debugging-using-node-inspector-https-github-com-node-inspector-node-inspector">Debugging using <a href="https://github.com/node-inspector/node-inspector" target="_blank">Node Inspector</a></h2>
-<p>You can follow similar instruction for using <a href="https://github.com/node-inspector/node-inspector" target="_blank">node-inspector</a> just use port <code>8080</code> instead of <code>5858</code> and open Chrome at: <a href="http://127.0.0.1:8080/?ws=127.0.0.1:8080&amp;port=5858" target="_blank">http://127.0.0.1:8080/?ws=127.0.0.1:8080&amp;port=5858</a> (you might want to use the <code>--debug-brk</code> flag instead of the <code>debug</code> flag if you can&apos;t set a breakpoint in time. Instead of starting with the debug flag, you woul install node incpector on the server and start the app using that.</p>
-<p>In practice using Webstorm - port 5858 directly - seems to work much better.</p>
-<h2 id="last-steps">Last Steps</h2>
-<p>If needed don&apos;t forget to stop the app and restart without the debug flag.</p>
+                        <h1 id="differentiating-runtim-environments">Differentiating runtim environments</h1>
+<p>Running <code>node app</code> should work out of the box for the dev environment. The build
+steps should be minimal.</p>
+<p>Creating a staging or production build might include some build steps. </p>
 
                     
                     </section>
@@ -756,10 +723,10 @@
         </div>
 
         
-        <a href="../../../general/workflow/index.html" class="navigation navigation-prev " aria-label="Previous page: Project Workflow"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../detail/grunt/grunt-init/index.html" class="navigation navigation-prev " aria-label="Previous page: Scaffolding"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../detail/php/xdebug/index.html" class="navigation navigation-next " aria-label="Next page: Debugging PHP"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../general/provisioning/index.html" class="navigation navigation-next " aria-label="Next page: Provisioning"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
