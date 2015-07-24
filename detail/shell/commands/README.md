@@ -36,6 +36,12 @@ List where apt-get installed something
 dpkg -L nginx
 ```
 
+## Last reboot
+
+```
+who –b
+```
+
 ## Links
 
 Creating a symbolic link:
