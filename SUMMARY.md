@@ -15,7 +15,7 @@
 * [Deploying a project](/general/devops/deployment/README.md)
 
 * [Misc](/general/misc/README.md)
-  * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)  
+  * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)
   * [JavaScript](/general/error-handling/javascript/README.md)
   * [File Upload](/general/file-upload/README.md)
   * [Profiling](/general/profiling/README.md)
@@ -35,3 +35,7 @@
   * [Mysql extension](/detail/php/mysql-extension/README.md)
   * [CLI](/detail/shell/cli/README.md)
   * [Commands](/detail/shell/commands/README.md)
+
+* [For Clients](/general/beta-testing/README.md)
+  * [TestFlight-iOS](/detail/testflight/README.md)
+  * [TestFairy-Android](/detail/testfairy/README.md)
