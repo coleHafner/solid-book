@@ -20,12 +20,14 @@ curl http://something.blah.yad | python -m json.tool
 
 ```
 # disk usage, human readable
-du -h
+du -chs /*
 # disk usage, summary per directory
 du -sh
 
 # free space
 df -h
+
+free -h
 ```
 
 ## Dpkg
