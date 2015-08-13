@@ -115,8 +115,28 @@ map to example.com's 27017.
 Something like this is useful for interacting with a locally bound process (e.g.
   mongo, mysql, elasticsearch...).
 
-```
+```shell
 ssh -L27018:localhost:27017 user@example.com -p 22
+```
+
+You can get more complicate, for example if you want Object Rocket to think you are example.com from your machine:
+
+```shell
+ssh -L38945:something.objectrocket.com:38945 user@example.com
+```
+
+Now you can use your port 38945 as if you were on example.com... allowing cli mongo login as well as Robomongo, etc access.
+
+You can use the -N flag for non interactive tunneling.
+
+You can also store your connections in a sock file for easy closing later:
+
+```shell
+# open and background manually ---- not with -f flag
+(ssh -N -L 9200:localhost:9200   -M -S /tmp/ssh_tunnel_9200_%h.sock $SSH_HOST_E)&
+
+# some point later close
+ssh -S /tmp/ssh_tunnel_9200_%h.sock  -O exit $SSH_HOST
 ```
 
 ## Tar
