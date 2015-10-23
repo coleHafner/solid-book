@@ -28,6 +28,9 @@ du -sh
 df -h
 
 free -h
+
+# directories that use a gig or over
+du -h / | grep '[0-9\.]\+G'
 ```
 
 ## Dpkg
