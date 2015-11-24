@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>JavaScript | The Big Incomplete Book of Dev</title>
+        <title>Deploying a project | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../general/file-upload/index.html" />
+    <link rel="next" href="../../../general/misc/index.html" />
     
     
-    <link rel="prev" href="../../../general/error-handling/exponential-backoff/index.html" />
+    <link rel="prev" href="../../../book/project/beta-testing/android/testfairy/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="4.2" data-basepath="../../.." data-revision="Mon Nov 23 2015 21:28:46 GMT-0800 (PST)">
+    <div class="book" data-level="3" data-basepath="../../.." data-revision="Mon Nov 23 2015 21:28:46 GMT-0800 (PST)">
     
 
 <div class="book-summary">
@@ -321,7 +321,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3" data-path="book/project/deployment/index.html">
+        <li class="chapter active" data-level="3" data-path="book/project/deployment/index.html">
             
                 
                     <a href="../../../book/project/deployment/index.html">
@@ -367,7 +367,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.2" data-path="general/error-handling/javascript/index.html">
+        <li class="chapter " data-level="4.2" data-path="general/error-handling/javascript/index.html">
             
                 
                     <a href="../../../general/error-handling/javascript/index.html">
@@ -760,33 +760,76 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="error-handling-in-javascript">Error Handling in JavaScript</h1>
-<p>Error handling is tricky in JavaScript because JavaScript is single threaded.
-For example
-the following code will not alert, &quot;error caught&quot;:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">try</span> {
-  setTimeout(
-    <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&apos;async error&apos;</span>); }
-  )
-} <span class="hljs-keyword">catch</span> (error) {
-  alert(<span class="hljs-string">&apos;error caught&apos;</span>);
+                        <h1 id="deploying-to-a-server">Deploying to a Server</h1>
+<p>There are several types of deployments. A deployment workflow should always be
+easy to remember, reliable, and repeatable. This section will cover how to deploy
+from a work box to a staging or production server using <code>git push</code>.</p>
+<p>Git 2.3+ supports push to deploy. In other words you can send code from your
+computer to a server via ssh using git. Since git comes with hooks, including a
+<code>post receive</code>, it is relatively straight forward to use git for deployment Heroku style.</p>
+<p>Make sure you have git 2.3+. On a mac:</p>
+<pre><code>brew update
+brew upgrade git
+</code></pre><p>You might have to rm a symlink to another version (<code>rm $(which git)</code>).</p>
+<p>On ubuntu:</p>
+<pre><code>sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+</code></pre><p>On the server, clone the repository. You should only clone the single branch the
+deployments are on. This can be done with <code>--single-branch</code>:</p>
+<p>For example, if all the deploys are on the branch <code>deploy/production</code>:</p>
+<pre><code>cd /var/www/vhosts
+git clone -b deploy/production --single-branch git@git.mydomain.com:foo/bar-project.git foo.bar.com
+</code></pre><p>To enable pushing into the repo, you must enable it:</p>
+<pre><code>cd foo.bar.com
+git config receive.denyCurrentBranch updateInstead
+</code></pre><p>Make sure ssh is enabled on your server.</p>
+<p>This is the minimum setup. Additionally depending on the type of project, you
+might want to setup post-receive hooks. These can be used to <code>npm install &amp;&amp; pm2 restart</code>,
+notify New Relic of a deployment, etc.</p>
+<p>The two tricky part about hooks are:</p>
+<ol>
+<li><p>Hooks are run by the user that was used for the ssh access. This could be important - for example - when updating node projects, where the user is important.</p>
+</li>
+<li><p>Commands must be fully qualified, so <code>git</code> won&apos;t work, but <code>/usr/local/bin/git</code> would.</p>
+</li>
+</ol>
+<p>This completes the server setup. To setup your workbox, add the remote needed:</p>
+<pre><code>git remote add deployProduction ssh://username@domain.com:1234/var/www/foo.bar.com
+</code></pre><p>The format is the ssh login followed by the directory the git repo is in.</p>
+<p>To deploy push the branch to the deployment remote:</p>
+<pre><code>git push deployProduction deploy/production
+</code></pre><p>This setup is flexible enough to allow deployments to multiple environments and repos.
+Remember the full deployment command is a bother, so we often setup the command
+<code>grunt deploy</code> which uses <code>grunt-prompt</code> to query the environment and any other information
+needed:</p>
+<pre><code>prompt : {
+    deploy : {
+        options : {
+            questions : [
+                {
+                    config : &apos;environment&apos;,
+                    type : &apos;list&apos;,
+                    message : &apos;Envirnoment to deploy to:&apos;,
+                    default : &apos;staging&apos;,
+                    choices : [&apos;staging&apos;, &apos;production&apos;]
+                },
+                {
+                    config : &apos;clients&apos;,
+                    type : &apos;checkbox&apos;,
+                    message: &apos;Clients to deploy (space to pick, enter to finalize):&apos;,
+                    choices: [
+                        &apos;one&apos;,
+                        &apos;two&apos;,
+                        &apos;two-and-a-half&apos;,
+                        &apos;three&apos;
+                    ]
+                }
+            ]
+        }
+    }
 }
-</code></pre>
-<p>This is because each line is only run once, and at the point the error is thrown,
-the catch block has already executed - that is been skipped because there was no error.</p>
-<p>So, these lines run first:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">try</span> {
-  setTimeout(
-
-  )
-} <span class="hljs-keyword">catch</span> (error) {
-  alert(<span class="hljs-string">&apos;error caught&apos;</span>);
-}
-</code></pre>
-<p>After this is run and the call stack is depleted, the callback for setTimeout runs:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&apos;async error&apos;</span>);
-</code></pre>
-<p>At this point the original catch block is no longer available to catch the error.</p>
+</code></pre><p>This can be combined with <code>grunt-shell</code> to do the full deploy.</p>
 
                     
                     </section>
@@ -797,10 +840,10 @@ the catch block has already executed - that is been skipped because there was no
         </div>
 
         
-        <a href="../../../general/error-handling/exponential-backoff/index.html" class="navigation navigation-prev " aria-label="Previous page: Exponential Back Off"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../book/project/beta-testing/android/testfairy/index.html" class="navigation navigation-prev " aria-label="Previous page: TestFairy-Android"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../general/file-upload/index.html" class="navigation navigation-next " aria-label="Next page: File Upload"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../general/misc/index.html" class="navigation navigation-next " aria-label="Next page: Misc"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

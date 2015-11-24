@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>JavaScript | The Big Incomplete Book of Dev</title>
+        <title>Project Workflow | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.0.1">
@@ -20,10 +20,10 @@
         
     
     
-    <link rel="next" href="../../../general/file-upload/index.html" />
+    <link rel="next" href="../../../book/project/workflow/debugging/node/index.html" />
     
     
-    <link rel="prev" href="../../../general/error-handling/exponential-backoff/index.html" />
+    <link rel="prev" href="../../../book/project/setup/provisioning/ansible/roles/index.html" />
     
 
         
@@ -36,7 +36,7 @@
     
 
         
-    <div class="book" data-level="4.2" data-basepath="../../.." data-revision="Mon Nov 23 2015 21:28:46 GMT-0800 (PST)">
+    <div class="book" data-level="2" data-basepath="../../.." data-revision="Mon Nov 23 2015 21:28:46 GMT-0800 (PST)">
     
 
 <div class="book-summary">
@@ -204,7 +204,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2" data-path="book/project/workflow/index.html">
+        <li class="chapter active" data-level="2" data-path="book/project/workflow/index.html">
             
                 
                     <a href="../../../book/project/workflow/index.html">
@@ -367,7 +367,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.2" data-path="general/error-handling/javascript/index.html">
+        <li class="chapter " data-level="4.2" data-path="general/error-handling/javascript/index.html">
             
                 
                     <a href="../../../general/error-handling/javascript/index.html">
@@ -760,33 +760,10 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="error-handling-in-javascript">Error Handling in JavaScript</h1>
-<p>Error handling is tricky in JavaScript because JavaScript is single threaded.
-For example
-the following code will not alert, &quot;error caught&quot;:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">try</span> {
-  setTimeout(
-    <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&apos;async error&apos;</span>); }
-  )
-} <span class="hljs-keyword">catch</span> (error) {
-  alert(<span class="hljs-string">&apos;error caught&apos;</span>);
-}
-</code></pre>
-<p>This is because each line is only run once, and at the point the error is thrown,
-the catch block has already executed - that is been skipped because there was no error.</p>
-<p>So, these lines run first:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">try</span> {
-  setTimeout(
-
-  )
-} <span class="hljs-keyword">catch</span> (error) {
-  alert(<span class="hljs-string">&apos;error caught&apos;</span>);
-}
-</code></pre>
-<p>After this is run and the call stack is depleted, the callback for setTimeout runs:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&apos;async error&apos;</span>);
-</code></pre>
-<p>At this point the original catch block is no longer available to catch the error.</p>
+                        <h1 id="workflow">Workflow</h1>
+<p>For more complicated workflows, Gulp works nicely. It seems to be faster than
+Grunt. Even faster than Gulp is just using Node NPMs directly.</p>
+<p>For example the Sass and Jade npms can be used to serve those files.</p>
 
                     
                     </section>
@@ -797,10 +774,10 @@ the catch block has already executed - that is been skipped because there was no
         </div>
 
         
-        <a href="../../../general/error-handling/exponential-backoff/index.html" class="navigation navigation-prev " aria-label="Previous page: Exponential Back Off"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../book/project/setup/provisioning/ansible/roles/index.html" class="navigation navigation-prev " aria-label="Previous page: Creating roles"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../general/file-upload/index.html" class="navigation navigation-next " aria-label="Next page: File Upload"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../book/project/workflow/debugging/node/index.html" class="navigation navigation-next " aria-label="Next page: Debugging Node"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
