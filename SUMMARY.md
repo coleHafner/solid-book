@@ -16,7 +16,6 @@
     * [TestFlight-iOS](/book/project/beta-testing/ios/testflight/README.md)
     * [TestFairy-Android](/book/project/beta-testing/android/testfairy/README.md)
 * [Deploying a project](/book/project/deployment/README.md)
-
 * [Misc](/general/misc/README.md)
   * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)
   * [JavaScript](/general/error-handling/javascript/README.md)
@@ -38,5 +37,3 @@
   * [Mysql extension](/detail/php/mysql-extension/README.md)
   * [CLI](/detail/shell/cli/README.md)
   * [Commands](/detail/shell/commands/README.md)
-
-
