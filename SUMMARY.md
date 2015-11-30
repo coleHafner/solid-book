@@ -16,6 +16,7 @@
     * [TestFlight-iOS](/book/project/beta-testing/ios/testflight/README.md)
     * [TestFairy-Android](/book/project/beta-testing/android/testfairy/README.md)
 * [Deploying a project](/book/project/deployment/README.md)
+  * [Deployment build script for static webpage](/book/project/deployment/build/README.md)  
 * [Misc](/general/misc/README.md)
   * [Exponential Back Off](/general/error-handling/exponential-backoff/README.md)
   * [JavaScript](/general/error-handling/javascript/README.md)
