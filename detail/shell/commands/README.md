@@ -3,7 +3,7 @@
 ## Check if command exists from script
 
 ```
-hash mongo 2>/dev/null || { echo "no mongo" }
+command -v foo >/dev/null 2>&1
 ```
 
 http://stackoverflow.com/a/677212/186636
