@@ -1,11 +1,11 @@
 {
-    "gitbook": ">=2.0.0",
-    "plugins": [ "jsfiddle", "collapsible-menu"],
+    "gitbook": "2.5.2",
+    "plugins": [ "jsfiddle"],
     "pluginsConfig": {
           "jsfiddle":{
             "tabs":["result","js","css", "html"],
             "height":500,
-            "widht":500
+            "width":500
           }
     }
 }
