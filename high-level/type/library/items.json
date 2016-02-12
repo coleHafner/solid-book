@@ -1,0 +1,10 @@
+[
+    {
+        "name" : "browserify",
+        "description" : "Browserify allows you to write code on the front end like you were writing Node code.\n It has some built on Node functionality implemented for the browser."
+    },
+    {
+        "name" : "express",
+        "description" : "Express is a Node server that allows."
+    }
+]

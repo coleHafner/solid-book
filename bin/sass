@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+node-sass high-level/styles/main.scss --source-map high-level/style.map high-level/style.css
+postcss --use autoprefixer -o high-level/style.css high-level/style.css
