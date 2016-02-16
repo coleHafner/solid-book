@@ -52,12 +52,12 @@ table {
   box-sizing: border-box; }
 
 body {
-  background: #003333; }
+  background: #5D7C2F;
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif; }
   body header {
-    background-color: #FFF8AA; }
+    background-color: #89B396; }
     body header h1 {
-      color: #550A00;
-      font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+      color: #103641;
       font-size: 22px;
       font-weight: 200;
       text-align: left;
@@ -71,9 +71,29 @@ body {
         -ms-flex-wrap: wrap;
             flex-wrap: wrap; }
     body content ul li {
-      display: block;
-      background-color: #669999;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      padding: 20px 10px 10px 10px;
+      background-color: #C9DFAA;
       width: 25%;
-      height: 300px;
-      border: #003333 solid 10px; }
+      border: #5D7C2F solid 10px; }
+      body content ul li h3 {
+        font-weight: 100;
+        font-size: 20px;
+        color: #4F727D; }
+      body content ul li p {
+        padding: 20px 0 10px; }
+  body content .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
 /*# sourceMappingURL=style.css.map */
