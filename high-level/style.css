@@ -49,5 +49,14 @@ table {
   box-sizing: border-box; }
 
 body {
-  background: black; }
+  background: #669999; }
+  body header {
+    background-color: #FFF8AA; }
+    body header h1 {
+      color: #550A00;
+      font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 200;
+      text-align: left;
+      padding: 20px 10px 20px; }
 /*# sourceMappingURL=style.css.map */
