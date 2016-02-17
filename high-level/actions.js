@@ -11,12 +11,7 @@ function open() {
         items = appState('items');
 
     appState('items', items.map(function(item) {
-        if (selected.name === item.name) {
-            item.selected = {
-                value : true
-            }
-        } else {
-            return item;
-        }
+        item.selected = selected.name === item.name;
+        return item;
     }));
 }

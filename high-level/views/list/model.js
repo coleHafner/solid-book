@@ -14,12 +14,12 @@ function transform(itemsStream) {
 
             itemsStream = itemsStream
                 .map(function (items) {
-                    debugger;
                     return _.map(items, function (item) {
                         return {
                             name : item.name,
                             description : item.description,
-                            faClass : getClass(item.type)
+                            faClass : getClass(item.type),
+                            selected : item.selected
                         }
                     });
                 });

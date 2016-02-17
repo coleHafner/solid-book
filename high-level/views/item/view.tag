@@ -5,3 +5,5 @@ item
         i.fa(class="{ model.faClass }")
         | { model.name }
     p { model.description }
+    script.
+        this.model = this.opts;
