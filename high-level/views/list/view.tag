@@ -4,7 +4,7 @@ list
             i.fa(class="{ item.faClass }")
             | &nbsp; { item.name }
         p { item.description }
-    .modal(if="{ model.selected }")
+    .modal(if="{ model.selectedItem }")
         close
             i.fa.fa-close
         h2
@@ -14,6 +14,7 @@ list
     script.
         var appState = require('../../appState'),
             itemsStream = appState.stream('items'),
+            selectedStream = appState.stream('selectedItem'),
             self = this,
             model = require('./model'),
             actions = require('../../actions');
@@ -21,4 +22,4 @@ list
         self.model = model;
         self.actions = actions;
 
-        self.mixin(model.transform(appState.stream('items')));
+        self.mixin(model.transform(itemsStream, selectedStream));

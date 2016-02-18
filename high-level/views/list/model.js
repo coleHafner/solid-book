@@ -7,7 +7,7 @@ module.exports = {
     items : []
 };
 
-function transform(itemsStream) {
+function transform(itemsStream, selectedStream) {
     return {
         init : function() {
             var self = this;
@@ -22,23 +22,17 @@ function transform(itemsStream) {
                             selected : item.selected
                         }
                     });
-                });
-
-            itemsStream.fork().each(function(items) {
+                })
+                .each(function(items) {
                     self.model.items = items;
                     self.update();
                 });
 
-            itemsStream.fork()
-                .map(function(items) {
-                    return _.find(items, function(item) {
-                        return !! item.selected;
-                    });
+            selectedStream
+                .each(function(selectedItem) {
+                    self.model.selectedItem = selectedItem;
+                    self.update();
                 })
-                .each(function(item) {
-                    self.model.selected = item;
-                });
-
         }
     };
 }

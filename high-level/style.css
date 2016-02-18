@@ -91,14 +91,13 @@ body {
       body content ul li p {
         padding: 20px 0 10px; }
   body content .modal {
-    position: absolute;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: #5D7C2F; }
-    body content .modal close {
-      position: absolute;
-      top: 0;
-      right: 0; }
 /*# sourceMappingURL=style.css.map */

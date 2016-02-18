@@ -7,11 +7,7 @@ module.exports = {
 };
 
 function open() {
-    var selected = this.item,
-        items = appState('items');
+    var selected = this.item;
 
-    appState('items', items.map(function(item) {
-        item.selected = selected.name === item.name;
-        return item;
-    }));
+    appState('selectedItem', selected.name);
 }
