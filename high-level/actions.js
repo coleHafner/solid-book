@@ -1,6 +1,7 @@
 'use strict';
 
-var appState = require('./appState');
+var appState = require('./appState'),
+    riot = require('riot');
 
 module.exports = {
     close : close,
@@ -8,11 +9,10 @@ module.exports = {
 };
 
 function close() {
-    appState('selectedName', null);
+    riot.route('');
 }
 
 function open() {
     var selected = this.item;
-
-    appState('selectedName', selected.name);
+    riot.route(selected.name);
 }
