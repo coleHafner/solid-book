@@ -1,6 +1,5 @@
 'use strict';
 
-console.log('ready');
 var riot = require('riot'),
     router = require('./router'),
     appState = require('./appState'),
