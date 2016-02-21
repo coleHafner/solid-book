@@ -39,7 +39,7 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-shell": "^1.1.2",
     "highland": "^2.6.0",
-    "immutable-app-state": "0.0.1",
+    "app-state": "1.1.0",
     "jade": "^1.11.0",
     "lodash": "^4.3.0",
     "matchdep": "^0.3.0",

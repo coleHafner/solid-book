@@ -1,6 +1,6 @@
 'use strict';
 
-var appState = require('immutable-app-state').init(),
+var appState = require('app-state/stream').init(),
     libraries = require('./type/library/items.json');
 
 module.exports = appState;

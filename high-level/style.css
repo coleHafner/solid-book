@@ -54,15 +54,15 @@ table {
 body {
   background: #5D7C2F;
   font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif; }
-  body header {
+  body .app header {
     background-color: #89B396; }
-    body header h1 {
+    body .app header h1 {
       color: #103641;
       font-size: 22px;
       font-weight: 200;
       text-align: left;
       padding: 20px 10px 20px; }
-  body content ul {
+  body .list {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -70,7 +70,7 @@ body {
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap; }
-    body content ul li {
+    body .list li {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -84,20 +84,18 @@ body {
       background-color: #C9DFAA;
       width: 25%;
       border: #5D7C2F solid 10px; }
-      body content ul li h3 {
+      body .list li h3 {
         font-weight: 100;
         font-size: 20px;
         color: #4F727D; }
-      body content ul li p {
+      body .list li p {
         padding: 20px 0 10px; }
-  body content .modal {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+  body .item {
+    position: absolute;
+    display: block;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #5D7C2F; }
+    background-color: #C9DFAA; }
 /*# sourceMappingURL=style.css.map */

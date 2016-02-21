@@ -1,27 +1,38 @@
 'use strict';
 
 var _ = require('lodash'),
-    model = {
-        transform : transform,
-        selected : {}
-    };
+    appState = require('../../appState');
 
-module.exports = model;
+function Model() {
+    this.selectedStream = appState.stream('items', 'selectedName');
+}
 
-function transform(selectedStream, itemsStream) {
-    return {
-        init : function () {
+Model.prototype.transform = transform;
+Model.prototype.update = update;
 
-            var self = this;
-            selectedStream
-                .each(function (selectedName) {
-                    var items = itemsStream.last();
+module.exports = Model;
 
-                    model.selected = _.find(items, function (item) {
-                        return item.name === selectedName;
-                    });
-                    self.update();
-                });
-        }
-    };
+function transform() {
+    return this.selectedStream
+        .filter(function(data) {
+            var name = data[1];
+            return !!name;
+        })
+        .map(function (data) {
+            var items = data[0],
+                name = data[1];
+
+            return _.find(items, function (item) {
+                return item.name === name;
+            });
+        });
+}
+
+function update(subscriber) {
+    var self = this;
+    this.transform()
+        .each(function(item) {
+            _.extend(self, item);
+            subscriber();
+        })
 }
