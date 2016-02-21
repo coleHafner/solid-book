@@ -1,0 +1,7 @@
+[
+  {
+    "name" : "mv*",
+    "description" : "Umbrella name for organizing an app using Models, Views and sometimes other things: MVC, MVP, MVVM...",
+    "type" : "concept"
+  }
+]

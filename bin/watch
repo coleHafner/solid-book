@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
 watch bin/sass high-level/styles
+watch bin/sass high-level/views

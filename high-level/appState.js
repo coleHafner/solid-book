@@ -1,7 +1,10 @@
 'use strict';
 
 var appState = require('app-state/stream').init(),
-    libraries = require('./type/library/items.json');
+    concepts = require('./type/concept/items.json'),
+    libraries = require('./type/library/items.json'),
+    itemsModel = require('./models/items');
+
+appState.transform('items', itemsModel.setItems, concepts, libraries);
 
 module.exports = appState;
-appState.set('items', libraries);

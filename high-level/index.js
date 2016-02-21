@@ -7,6 +7,7 @@ var riot = require('riot'),
 
 require('./views/list/view.tag');
 require('./views/item/view.tag');
+require('./views/search/view.tag');
 
 riot.mount(appView);
 router.start();

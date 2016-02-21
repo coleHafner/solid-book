@@ -1,10 +1,5 @@
-app
-    header
-        h1 At a high level... as they say
-    content
-        search.search
-        ul.list(riot-tag="list")
-        item.item(if="{ model.selectedName }")
+search
+    input(type="text" placeholder=" Search")
     script.
         var self = this,
             Model = require('./model'),

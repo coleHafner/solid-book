@@ -39,6 +39,8 @@ function update(subscriber) {
 function getClass(type) {
     switch (type) {
     case 'library':
-        return 'fa-book'
+        return 'fa-book';
+    case 'concept':
+        return 'fa-cogs';
     }
 }
