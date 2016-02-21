@@ -1,6 +1,7 @@
 'use strict';
 
-var riot = require('riot');
+var riot = require('riot'),
+    appState = require('./appState');
 
 module.exports = {
     start : start
