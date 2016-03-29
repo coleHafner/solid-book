@@ -11,3 +11,5 @@ cd solid-book
 gitbook install
 (sleep 3; open http://localhost:4000) &; gitbook serve
 ```
+
+To deploy, `grunt deploy`
