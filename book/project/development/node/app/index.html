@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Ansible Intro | The Big Incomplete Book of Dev</title>
+        <title>What &quot;good&quot; node apps should have | The Big Incomplete Book of Dev</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../../../../../book/project/setup/provisioning/ansible/playbooks/index.html" />
+    <link rel="next" href="../../../../../book/project/deployment/index.html" />
     
     
-    <link rel="prev" href="../../../../../book/project/setup/provisioning/index.html" />
+    <link rel="prev" href="../../../../../book/project/development/node/index.html" />
     
 
         
@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2.1" data-chapter-title="Ansible Intro" data-filepath="book/project/setup/provisioning/ansible/README.md" data-basepath="../../../../.." data-revision="Mon Apr 04 2016 07:50:20 GMT-0700 (PDT)">
+    <div class="book" data-level="3.1.1" data-chapter-title="What &quot;good&quot; node apps should have" data-filepath="book/project/development/node/app/README.md" data-basepath="../../../../.." data-revision="Mon Apr 04 2016 07:50:20 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -159,7 +159,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1" data-path="book/project/setup/provisioning/ansible/index.html">
+        <li class="chapter " data-level="1.2.1" data-path="book/project/setup/provisioning/ansible/index.html">
             
                 
                     <a href="../../../../../book/project/setup/provisioning/ansible/index.html">
@@ -363,7 +363,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1.1" data-path="book/project/development/node/app/index.html">
+        <li class="chapter active" data-level="3.1.1" data-path="book/project/development/node/app/index.html">
             
                 
                     <a href="../../../../../book/project/development/node/app/index.html">
@@ -778,69 +778,23 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ansible">Ansible</h1>
-<p>Ansible allows you to guarantee an environment on one or many servers. At a high
-level you run a playbook that has roles made up of tasks. Each role is a functional
-chunck. For example there can be a &quot;git&quot; role that ensures git 2.3+ is available.</p>
-<p>It is a good idea to separate general from project specific roles. For example
-you could have an <code>nginx</code> role and an <code>nginx-project</code> role.</p>
-<p>One of the nice things about Ansible is that it doesn&apos;t require anything else
-than having Ansible installed locally and ssh access to the servers being
-managed.</p>
-<p>To install Ansible on a Mac use <code>pip</code>:</p>
-<pre><code class="lang-shell">sudo easy_install pip
-sudo pip install ansible
+                        <p>There are several basic things needed to make a node app maintainable and easy to debug.</p>
+<h1 id="error-handling">Error Handling</h1>
+<p>Error handling should be built into the app. It is often useful for errors to be highly visible either in the app itself
+or in logs. This helps with finding the root cause of errors. Silently swallowing errors makes it difficult to debug.</p>
+<p>In addition to handling specific errors in the app, there should be a global catch for unhandled exceptions. This is a
+good sport for remote logging, sending a notification of the error via email or some other means, and / or restarting
+the app.</p>
+<pre><code class="lang-javascript">process.on(<span class="hljs-string">&apos;unhandledException&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+    log.remote(<span class="hljs-string">`Error: <span class="hljs-subst">${ new Date }</span> - <span class="hljs-subst">${ error }</span>`</span>);
+    process.exit(<span class="hljs-number">1</span>);
+});
 </code></pre>
-<p>If you are testing things out on vagrant - and not using just plain <code>vagrant up</code> - and need to use a password with ssh,
-you might have to <a href="http://fauxzen.com/installing-sshpass-os-x/" target="_blank">install <code>sshpass</code></a>.
-Though you don&apos;t need to install anything extra if you are simply using Ansible
-as a provisioning agent for Vagrant.</p>
-<p>We&apos;ll put everything in a directory. Create the directory and then we&apos;ll start by
-setting up an Ansible hosts file. Below is an example setting up 2 vagrant boxes
-at the same time. To follow along, setup vagrant in two separate directories with:</p>
-<pre><code>config.vm.network &quot;private_network&quot;, ip: &quot;192.168.12.148&quot;
-</code></pre><p>and</p>
-<pre><code>config.vm.network &quot;private_network&quot;, ip: &quot;192.168.12.158&quot;
-</code></pre><p>For example:</p>
-<pre><code class="lang-ruby"><span class="hljs-comment"># -*- mode: ruby -*-</span>
-<span class="hljs-comment"># vi: set ft=ruby :</span>
-
-<span class="hljs-constant">Vagrant</span>.configure(<span class="hljs-string">&quot;2&quot;</span>) <span class="hljs-keyword">do</span> |config|
-  config.vm.provider <span class="hljs-string">&quot;virtualbox&quot;</span> <span class="hljs-keyword">do</span> |v|
-        <span class="hljs-comment"># max specific</span>
-        <span class="hljs-comment"># Give VM 1/4 system memory &amp; access to all cpu cores on the host</span>
-        cpus = <span class="hljs-string">`sysctl -n hw.ncpu`</span>.to_i
-        <span class="hljs-comment"># sysctl returns Bytes and we need to convert to MB</span>
-        mem = <span class="hljs-string">`sysctl -n hw.memsize`</span>.to_i / <span class="hljs-number">1024</span> / <span class="hljs-number">1024</span> / <span class="hljs-number">4</span>
-        v.customize [<span class="hljs-string">&quot;modifyvm&quot;</span>, <span class="hljs-symbol">:id</span>, <span class="hljs-string">&quot;--memory&quot;</span>, mem]
-        v.customize [<span class="hljs-string">&quot;modifyvm&quot;</span>, <span class="hljs-symbol">:id</span>, <span class="hljs-string">&quot;--cpus&quot;</span>, cpus]
-  <span class="hljs-keyword">end</span>
-
-  config.vm.box = <span class="hljs-string">&quot;ubuntu/trusty64&quot;</span>
-  config.vm.network <span class="hljs-string">&quot;private_network&quot;</span>, <span class="hljs-symbol">ip:</span> <span class="hljs-string">&quot;192.168.12.158&quot;</span>
-<span class="hljs-keyword">end</span>
-</code></pre>
-<p><a href="http://docs.ansible.com/intro_inventory.html#list-of-behavioral-inventory-parameters" target="_blank">Parameters you can add to a hosts file</a></p>
-<pre><code>[vagrant]
-192.168.12.148 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-192.168.12.158 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-</code></pre><p>Once vagrant is running (<code>vagrant global-status</code>), we can give things a test. Note
-that you might have to manaully login once to add the RSA key fingerprints of the
-Vagrant boxes. Then run the following:</p>
-<pre><code class="lang-shell">&#xBB; ansible -m ping vagrant -i hosts
-</code></pre>
-<p>You should see:</p>
-<pre><code>192.168.12.158 | success &gt;&gt; {
-    &quot;changed&quot;: false,
-    &quot;ping&quot;: &quot;pong&quot;
-}
-
-192.168.12.148 | success &gt;&gt; {
-    &quot;changed&quot;: false,
-    &quot;ping&quot;: &quot;pong&quot;
-}
-</code></pre><p>User roles to organize playbooks.</p>
-<p><a href="https://github.com/ansible/ansible-examples" target="_blank">https://github.com/ansible/ansible-examples</a></p>
+<h1 id="visible-version-number">Visible Version Number</h1>
+<h1 id="way-to-dev-locally">Way to dev locally</h1>
+<h1 id="automated-deploy">Automated Deploy</h1>
+<h1 id="optimization-on-production">Optimization on production</h1>
+<p>Minification, concat (or vulcanize), cache busting etc.</p>
 
                     
                     </section>
@@ -851,10 +805,10 @@ Vagrant boxes. Then run the following:</p>
         </div>
 
         
-        <a href="../../../../../book/project/setup/provisioning/index.html" class="navigation navigation-prev " aria-label="Previous page: Provisioning"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../../../book/project/development/node/index.html" class="navigation navigation-prev " aria-label="Previous page: Node"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../../../book/project/setup/provisioning/ansible/playbooks/index.html" class="navigation navigation-next " aria-label="Next page: Initial setup"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../../../book/project/deployment/index.html" class="navigation navigation-next " aria-label="Next page: Deploying a project"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
