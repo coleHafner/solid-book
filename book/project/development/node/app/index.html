@@ -48,7 +48,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1.1" data-chapter-title="What &quot;good&quot; node apps should have" data-filepath="book/project/development/node/app/README.md" data-basepath="../../../../.." data-revision="Mon Apr 04 2016 07:50:20 GMT-0700 (PDT)">
+    <div class="book" data-level="3.1.1" data-chapter-title="What &quot;good&quot; node apps should have" data-filepath="book/project/development/node/app/README.md" data-basepath="../../../../.." data-revision="Mon Apr 04 2016 08:11:43 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -785,7 +785,7 @@ or in logs. This helps with finding the root cause of errors. Silently swallowin
 <p>In addition to handling specific errors in the app, there should be a global catch for unhandled exceptions. This is a
 good sport for remote logging, sending a notification of the error via email or some other means, and / or restarting
 the app.</p>
-<pre><code class="lang-javascript">process.on(<span class="hljs-string">&apos;unhandledException&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+<pre><code class="lang-javascript">process.on(<span class="hljs-string">&apos;uncaughtException&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
     log.remote(<span class="hljs-string">`Error: <span class="hljs-subst">${ new Date }</span> - <span class="hljs-subst">${ error }</span>`</span>);
     process.exit(<span class="hljs-number">1</span>);
 });
