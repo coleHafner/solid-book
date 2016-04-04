@@ -10,7 +10,7 @@ good sport for remote logging, sending a notification of the error via email or 
 the app.
 
 ```javascript
-process.on('unhandledException', function(error) {
+process.on('uncaughtException', function(error) {
     log.remote(`Error: ${ new Date } - ${ error }`);
     process.exit(1);
 });
