@@ -167,3 +167,9 @@ Mac, but gnu tar does:
 ```
 brew instasll gnu-tar
 ```
+
+## Number of cores
+
+```
+cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l
+```
